@@ -1,0 +1,58 @@
+
+body {
+	background-color: #f0f0f0;
+}
+
+.fluid-row {
+	background: #00f28f;
+	box-shadow: none;
+	outline: none;
+}
+
+table {
+	padding-left: 20px;
+	background: #f0f0f0;
+	border-left: 2px solid #000;
+	box-shadow: none;
+	outline: none;
+	text-align: left;
+}
+
+.section level2 {
+	background: #f0f0f0;
+	box-shadow: yes;
+	outline: none;
+}
+code {
+	background-color: #00f28f;
+}
+
+#profile{
+	background: #00f28f;
+	box-shadow: none;
+	outline: none;
+}
+
+#name-and-type{
+	background: #00f28f;
+	box-shadow: none;
+	outline: none;
+}
+
+#details{
+	background: #00f28f;
+	box-shadow: none;
+	outline: none;
+}
+
+#instructions {
+	background: #00f28f;
+	box-shadow: none;
+	outline: none;
+}
+
+#charts {
+	background: #f0f0f0;
+	box-shadow: none;
+	outline: none;
+}

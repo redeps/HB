@@ -1,0 +1,169 @@
+---
+title: "Report"
+author: "psoeraas"
+output: html_document
+css: styles.css
+---
+
+This is a description of your beer and a list of details for brewing.
+
+
+> Using the following file:
+```{r, echo = FALSE}
+suppressWarnings(library(ggplot2))
+stjerne <- data.frame(read.csv(file = "U:/R/HB/XY.csv"))
+south <- data.frame(read.csv(file = "U:/R/HB/XYsouth.csv"))
+hopimg <- data.frame(read.csv(file = "U:/R/HB/XYhop.csv"))
+leaves <- data.frame(read.csv(file = "U:/R/HB/XYleaves.csv"))
+stem <- data.frame(read.csv(file = "U:/R/HB/XYstem.csv"))
+lineimg <- data.frame(read.csv(file = "U:/R/HB/XYline.csv"))
+brew <- data.frame(read.csv(file = "U:/R/HB/XYbrew.csv"))
+star <- data.frame(read.csv(file = "U:/R/HB/XYstar.csv"))
+
+
+
+#Finding data
+suppressWarnings(library(knitr))
+closestTimestamp <- as.numeric(gsub(" ","", format(Sys.time(), "%d %m %y %H %M")))
+files <- list.files("U:/R/HB")
+timestamps <- as.numeric(gsub("[^$[:digit:]+{1}]", "", files))
+for(item in 1:length(timestamps)){
+  if(!is.na(timestamps[item])){
+    timestamps[item] <- closestTimestamp - timestamps[item]
+  }
+}
+timestamps <- ifelse(timestamps > 0, timestamps, NA)
+timestamps <- ifelse(timestamps == min(timestamps, na.rm = T), timestamps, NA)
+
+minimum <- grep(pattern = min(timestamps, na.rm = T), timestamps)
+loadfile <- paste0("U:/R/HB/",files[minimum])
+loadfile
+load(file = loadfile)
+#gravity_notes, IBU, df, BeerName, BeerType, hopgraph, maltgraph, Attgraph, img, Hops, Malts
+```
+
+## Name and type:
+
+```{r, echo = FALSE, comment = NA}
+#Name
+returnlist[[4]][1]
+#Type
+returnlist[[5]][1]
+```
+
+## Profile:
+
+```{r, echo = FALSE, results = "asis"}
+#Hops
+hoplist <- unlist(returnlist[10])
+#Malts
+maltlist <- c(unlist(returnlist[[11]]$Malts))
+
+hops <- c()
+malts <- c()
+
+for(hop in 1:length(hoplist)){
+  if(hop == 1){
+    hops <- hoplist[[1]]
+  } else {
+    hops <- paste0(hops,", ", hoplist[[hop]])
+  }
+}
+
+for(malt in 1:length(maltlist)){
+  if(malt == 1){
+    malts <- maltlist[[1]]
+  } else {
+    malts <- paste0(malts,", ", maltlist[[malt]])
+  }
+}
+
+df <- data.frame(c("Hops","Malts"), c(hops, malts))
+colnames(df) <- c("Ingredients","Name")
+kable(df, format = "markdown")
+
+```
+
+```{r, echo = FALSE, results = "asis"}
+
+#Malts
+
+maltname <- unlist(returnlist[[11]]$Malts)
+maltdesc <- returnlist[[11]]$description
+malttype <- unlist(returnlist[[11]]$type)
+
+
+
+maltdf <- data.frame(maltname,maltdesc, malttype)
+
+colnames(maltdf) <- c("Malt","Description","Type")
+kable(maltdf, format = "markdown")
+
+```
+
+
+
+## Details:
+```{r, echo = FALSE, results = "asis"}
+Category <- c("Expected OG","Expected FG","Approx. SRM:","Approx. MCU:","Estimated ABV:","IBUs") 
+Value <- c(returnlist[[1]][1],returnlist[[1]][5],returnlist[[1]][2],returnlist[[1]][4],returnlist[[1]][6],returnlist[[2]])
+
+df <- data.frame(Category,Value)
+kable(df, format = "markdown")
+
+```
+
+
+## Instructions:
+```{r, echo = FALSE}
+Instruction <- c("Strike temp:")
+Value <- returnlist[[1]][3]
+
+df <- data.frame(Instruction, Value)
+kable(df, format = "markdown")
+```
+
+
+## Charts:
+
+```{r, echo=FALSE, fig.width=10, fig.height=3, warning = FALSE, fig.align = "center"}
+hopchart <- (returnlist[6])
+suppressWarnings(hopchart)
+maltgraph <- (returnlist[7])
+suppressWarnings(maltgraph)
+Attgraph <- (returnlist[8])
+suppressWarnings(Attgraph)
+```
+
+
+
+```{r, echo = FALSE, fig.width = 12, fig.height = 8, warning = FALSE}
+
+ggplot(data = south, aes(Xsouth,Ysouth))+
+  geom_point()+
+  geom_point(data = hopimg, aes(Xhop,Yhop))+
+  geom_point(data = leaves, aes(Xleaves,Yleaves, color = Group))+
+  geom_point(data = stem, aes(Xstem,Ystem))+
+  geom_point(data = lineimg, aes(Xline,Yline))+
+  geom_point(data = brew, aes(Xbrewnew,Ybrew))+
+  geom_point(data = star, aes(Xstar,Ystar))+
+  theme(
+    plot.background = element_rect(fill = "#f0f0f0", colour = "#f0f0f0"),
+    panel.background = element_rect(fill = "#f0f0f0", colour = "#f0f0f0"),
+    panel.grid = element_line(colour = "#f0f0f0"),
+    axis.ticks.margin = "none",
+    axis.line=element_blank(),
+    axis.title.x=element_blank(),
+    axis.title.y=element_blank(),
+    legend.position="none"
+  )
+  
+  
+
+
+```
+
+
+
+
+
