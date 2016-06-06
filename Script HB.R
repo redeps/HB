@@ -20,9 +20,9 @@ library(jpeg)
 
 ###################ENTER VALUES FOR FINAL COMPUTATION###############################
 
-
-Hops<-c("Cascade")
-Hopweights <-list(55)
+yeast <- "California Ale"
+Hops<-c("Cascade","Willamette")
+Hopweights <-list(55, 23)
 Boilmin <- list(60)
 Malts<-list("Cara","Barley")
 Target_Batch_L <- 20
@@ -71,14 +71,16 @@ source("U:/R/HB/hopsdirectory.R")
 source("U:/R/HB/boilmashcalc.R")
 source("U:/R/HB/gravitycolourcalc.R")
 source("U:/R/HB/ibucalc.R")
+source("U:/R/HB/yeastdirectory.R")
 source("U:/R/HB/overallfunction.R")
+
 
 #for yeasts:
 # http://brewerwall.com/yeasts
 
 
 #amountfunc(11, 4000, 1, 64)
-#FGCalc(Malts, 4350, Grainprops, 19)
+#FGCalc(Malts, 4350, Grainprops, 19, "Ale yeast")
 #OGBE <- as.numeric(FGCalc(Malts, 4350, Grainprops, 19)[[1]][1])
 #IBUCalc(Hops, Hopweights, 11, OGBE, Boilmin)
 
@@ -87,12 +89,12 @@ source("U:/R/HB/overallfunction.R")
 #markdown document will refer to directory's version of the numbers and plots
 
 
-srmHex <- data.frame(read.csv(file = "U:/R/HB/SRMHEX.csv"))
 
-RunFGCalc(Malts, 4350, Grainprops, 19, Hops, Hopweights, Boilmin, 1, 64,22,70)
 
-load(file = "U:/R/HB/0206161232.Rdata")
-suppressWarnings(returnlist[6])
+RunFGCalc(Malts, 4350, Grainprops, 19, Hops, Hopweights, Boilmin, 1, 64, yeast, 22,70)
+
+load(file = "U:/R/HB/0606161339.Rdata")
+suppressWarnings(returnlist[15])
 suppressWarnings(returnlist[7])
 suppressWarnings(returnlist[8])
 
@@ -107,22 +109,69 @@ suppressWarnings(returnlist[8])
 
 
 stjerne <- data.frame(read.csv(file = "U:/R/HB/XY.csv"))
+stjerne$Group <- factor(6)
 south <- data.frame(read.csv(file = "U:/R/HB/XYsouth.csv"))
+south$Group <- factor(7)
 hopimg <- data.frame(read.csv(file = "U:/R/HB/XYhop.csv"))
+hopimg$Group <- factor(7)
 leaves <- data.frame(read.csv(file = "U:/R/HB/XYleaves.csv"))
+leaves$Group <- as.factor(leaves$Group)
 stem <- data.frame(read.csv(file = "U:/R/HB/XYstem.csv"))
+stem$Group <- factor(10)
 lineimg <- data.frame(read.csv(file = "U:/R/HB/XYline.csv"))
+lineimg$Group <- factor(11)
 brew <- data.frame(read.csv(file = "U:/R/HB/XYbrew.csv"))
+brew$Group <- factor(7)
 star <- data.frame(read.csv(file = "U:/R/HB/XYstar.csv"))
+star$Group <- factor(11)
 
-ggplot(data = south, aes(Xsouth,Ysouth))+
+cbpalette <- c("#00a662","#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+palette <- c(
+  #leaf
+  "#63f200",
+  #stem
+  "#f28f00",
+  #design
+  "#00f28f",
+  #leaves
+  "#00f28f",
+  "#00dcf2",
+  "#0063f2",
+  "#1600f2",
+  #text
+  "#f20063"
+  )
+
+
+
+ggplot(data = south, aes(Xsouth,Ysouth, color = Group))+
   geom_point()+
   geom_point(data = hopimg, aes(Xhop,Yhop))+
-  geom_point(data = leaves, aes(Xleaves,Yleaves, color = Group))+
+  geom_point(data = leaves, aes(Xleaves,Yleaves))+
   geom_point(data = stem, aes(Xstem,Ystem))+
-#  geom_point(data = lineimg, aes(Xline,Yline))+
-#  geom_point(data = brew, aes(Xbrewnew,Ybrew))+
-  geom_point(data = star, aes(Xstar,Ystar))
+  geom_point(data = lineimg, aes(Xline,Yline))+
+  geom_point(data = brew, aes(Xbrewnew,Ybrew))+
+  geom_point(data = star, aes(Xstar,Ystar))+
+  scale_colour_manual(values = c(
+    #leaf
+    "#63f200",
+    #stem
+    "#f28f00",
+    #design
+    "#00f28f",
+    #leaves
+    "#00f28f",
+    "#00dcf2",
+    "#0063f2",
+    "#1600f2",
+    #text
+    "#f20063"
+  ))
+
+
+
+
+
 
 ##################################################################################
 ##################################################################################
@@ -132,6 +181,7 @@ ggplot(data = south, aes(Xsouth,Ysouth))+
 library(grid)
 vp <- viewport(x=0.5, y=0.5, width=0.9, height=0.9)
 pushViewport(vp)
+
 #grid.circle(x=0.6, y=0.7, r=0.3)
 #grid.lines(c(.3,.5), c(.7,.1))
 #grid.polygon(x=c(0.54,0.52,0.50,0.48,0.46,0.44,0.42,0.40,0.38,0.36,0.34,0.32,0.3,0.3,0.3,0.3,0.3,0.3,0.29,0.28,0.27,0.27,0.27,0.27,0.28,0.29,0.3, 0.40,0.42,0.44,0.46,0.48,0.50,0.52,0.54,0.56,0.58,0.6,0.62,0.64,0.66,0.68, 0.70, 0.8,0.81,0.82,0.83,0.83,0.83,0.83,0.82,0.81,0.8,0.8,0.8,0.8,0.8,0.8,0.78,0.76,0.74,0.72,0.70,0.68,0.66,0.64,0.62,0.6,0.58,0.56), 

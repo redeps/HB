@@ -38,7 +38,7 @@ amountfunc <- function(Target_Batch_L, Grams_Grain, Boil_time_Hr, Target_Mash_Te
   }
   Strike_Temp <-Strike_Tempfunc(Target_Mash_Temp,Grain_Temp)
   print(paste0("Strike temp (C): ", Strike_Temp))
-  recipe_notes<-c(Strike_Volume, Sparge_Volume, Total_Water, Strike_Temp)
+  recipe_notes<-c(Strike_Volume, Sparge_Volume, Total_Water, Strike_Temp, Target_Batch_L, Target_Mash_Temp)
   return(recipe_notes)
 }
 

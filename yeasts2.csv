@@ -1,0 +1,279 @@
+"","Name","Lab","Attentuation","Temperature","Tolerance","minatt","maxatt","avgatt","mintemp","maxtemp"
+"1","California Ale Yeast ","White Labs ","73% - 80% ","68 °F - 73 °F ",15,73,80,76.5,68,73
+"2","English Ale Yeast ","White Labs ","63% - 70% ","65 °F - 68 °F ",10,63,70,66.5,65,68
+"3","Irish Ale Yeast ","White Labs ","69% - 74% ","65 °F - 68 °F ",12,69,74,71.5,65,68
+"4","British Ale Yeast ","White Labs ","67% - 74% ","65 °F - 70 °F ",10,67,74,70.5,65,70
+"5","Bedford British ","White Labs ","72% - 80% ","65 °F - 70 °F ",10,72,80,76,65,70
+"6","Dry English Ale Yeast ","White Labs ","70% - 80% ","65 °F - 70 °F ",12,70,80,75,65,70
+"7","East Coast Ale Yeast ","White Labs ","70% - 75% ","68 °F - 73 °F ",10,70,75,72.5,68,73
+"8","Australian Ale Yeast ","White Labs ","70% - 75% ","65 °F - 70 °F ",10,70,75,72.5,65,70
+"9","European Ale Yeast ","White Labs ","65% - 70% ","65 °F - 70 °F ",10,65,70,67.5,65,70
+"10","London Ale Yeast ","White Labs ","67% - 75% ","66 °F - 71 °F ",10,67,75,71,66,71
+"11","Whitbread Ale Yeast ","White Labs ","67% - 73% ","66 °F - 70 °F ",10,67,73,70,66,70
+"12","Essex Ale Yeast ","White Labs ","71% - 76% ","66 °F - 70 °F ",10,71,76,73.5,66,70
+"13","Burton Ale Yeast ","White Labs ","69% - 75% ","68 °F - 73 °F ",10,69,75,72,68,73
+"14","Edinburgh Scottish Ale Yeast ","White Labs ","70% - 75% ","65 °F - 70 °F ",12,70,75,72.5,65,70
+"15","German Ale/ Kolsch Yeast ","White Labs ","72% - 78% ","65 °F - 69 °F ",10,72,78,75,65,69
+"16","Dusseldorf Alt Yeast ","White Labs ","65% - 72% ","65 °F - 69 °F ",10,65,72,68.5,65,69
+"17","Yorkshire Square Ale Yeast ","White Labs ","68% - 72% ","65 °F - 70 °F ",12,68,72,70,65,70
+"18","Manchester Ale Yeast ","White Labs ","70% - 74% ","65 °F - 70 °F ",12,70,74,72,65,70
+"19","East Midlands Ale Yeast ","White Labs ","73% - 82% ","66 °F - 70 °F ",10,73,82,77.5,66,70
+"20","Pacific Ale Yeast ","White Labs ","65% - 70% ","65 °F - 68 °F ",10,65,70,67.5,65,68
+"21","Scotch Whisky Yeast ","White Labs ","75% - 80% ","72 °F - 77 °F ",15,75,80,77.5,72,77
+"22","Tennessee Whiskey Yeast ","White Labs ","75% - 80% ","75 °F - 79 °F ",15,75,80,77.5,75,79
+"23","California Ale V Yeast ","White Labs ","70% - 75% ","66 °F - 70 °F ",12,70,75,72.5,66,70
+"24","American Ale Yeast Blend ","White Labs ","72% - 80% ","68 °F - 72 °F ",12,72,80,76,68,72
+"25","American Whiskey Yeast ","White Labs ","76% - 82% ","75 °F - 82 °F ",15,76,82,79,75,82
+"26","Bourbon Yeast ","White Labs ","75% - 80% ","72 °F - 77 °F ",15,75,80,77.5,72,77
+"27","French Ale ","White Labs ","68% - 75% ","63 °F - 73 °F ",10,68,75,71.5,63,73
+"28","Old Sonoma Ale Yeast ","White Labs ","70% - 74% ","66 °F - 70 °F ",10,70,74,72,66,70
+"29","Neutral Grain Yeast ","White Labs ","77% - 84% ","76 °F - 85 °F ",15,77,84,80.5,76,85
+"30","Cream Ale Yeast Blend ","White Labs ","75% - 80% ","65 °F - 70 °F ",12,75,80,77.5,65,70
+"31","English Ale Blend ","White Labs ","69% - 76% ","68 °F - 72 °F ",NA,69,76,72.5,68,72
+"32","San Diego Super Yeast ","White Labs ","76% - 83% ","65 °F - 68 °F ",15,76,83,79.5,65,68
+"33","Super High Gravity Ale Yeast ","White Labs ","80% - 100% ","65 °F - 69 °F ",25,80,100,90,65,69
+"34","Hefeweizen Ale Yeast ","White Labs ","72% - 76% ","68 °F - 72 °F ",10,72,76,74,68,72
+"35","American Hefeweizen Ale Yeast ","White Labs ","70% - 75% ","65 °F - 69 °F ",10,70,75,72.5,65,69
+"36","Bavarian Weizen Yeast ","White Labs ","73% - 77% ","66 °F - 70 °F ",10,73,77,75,66,70
+"37","Hefeweizen IV Ale Yeast ","White Labs ","73% - 80% ","66 °F - 70 °F ",10,73,80,76.5,66,70
+"38","Belgian Wit Ale Yeast ","White Labs ","74% - 78% ","67 °F - 74 °F ",10,74,78,76,67,74
+"39","Belgian Wit II Ale Yeast ","White Labs ","70% - 75% ","67 °F - 74 °F ",10,70,75,72.5,67,74
+"40","Trappist Ale Yeast ","White Labs ","75% - 80% ","65 °F - 72 °F ",15,75,80,77.5,65,72
+"41","Bastogne Belgian Ale Yeast ","White Labs ","74% - 80% ","66 °F - 72 °F ",15,74,80,77,66,72
+"42","Antwerp Ale Yeast ","White Labs ","73% - 80% ","67 °F - 70 °F ",10,73,80,76.5,67,70
+"43","Abbey Ale Yeast ","White Labs ","75% - 80% ","66 °F - 72 °F ",15,75,80,77.5,66,72
+"44","Abbey IV Ale Yeast ","White Labs ","74% - 82% ","66 °F - 72 °F ",15,74,82,78,66,72
+"45","Belgian Strong Ale Yeast ","White Labs ","78% - 85% ","66 °F - 72 °F ",15,78,85,81.5,66,72
+"46","Belgian Ale Yeast ","White Labs ","78% - 85% ","68 °F - 78 °F ",12,78,85,81.5,68,78
+"47","Belgian Saison I Yeast ","White Labs ","65% - 75% ","68 °F - 75 °F ",10,65,75,70,68,75
+"48","Belgian Saison II Yeast ","White Labs ","78% - 85% ","68 °F - 78 °F ",10,78,85,81.5,68,78
+"49","Belgian Style Saison Ale Yeast Blend ","White Labs ","70% - 80% ","70 °F - 80 °F ",10,70,80,75,70,80
+"50","Belgian Golden Ale Yeast ","White Labs ","73% - 78% ","68 °F - 75 °F ",15,73,78,75.5,68,75
+"51","Belgian Style Ale Yeast Blend ","White Labs ","74% - 80% ","68 °F - 75 °F ",12,74,80,77,68,75
+"52","Belgian Saison III Yeast ","White Labs ","70% - 74% ","68 °F - 75 °F ",10,70,74,72,68,75
+"53","Berliner Weisse Blend ","White Labs ","73% - 80% ","68 °F - 72 °F ",10,73,80,76.5,68,72
+"54","Brettanomyces bruxellensis Trois ","White Labs ","85% - 100% ","70 °F - 85 °F ",12,85,100,92.5,70,85
+"55","Brettanomyces claussenii ","White Labs ","70% - 85% ","85 °F+ ",12,70,85,77.5,85,NA
+"56","Brettanomyces bruxellensis ","White Labs ","70% - 85% ","85 °F+ ",12,70,85,77.5,85,NA
+"57","Brettanomyces lambicus ","White Labs ","70% - 85% ","85 °F+ ",12,70,85,77.5,85,NA
+"58","Belgian Sour Mix 1 ","White Labs ","70% - 80% ","80 °F - 85 °F ",12,70,80,75,80,85
+"59","Flemish Ale Blend ","White Labs ","80% - 85% ","68 °F - 80 °F ",12,80,85,82.5,68,80
+"60","American Farmhouse Blend ","White Labs ","75% - 82% ","68 °F - 72 °F ",10,75,82,78.5,68,72
+"61","Malolactic Cultures ","White Labs ","Any ","Any ",NA,NA,NA,NA,NA,NA
+"62","Lactobacillus Bacteria ","White Labs ","75% - 82% ","70 °F - 75 °F ",12,75,82,78.5,70,75
+"63","Flor Sherrry Yeast ","White Labs ","80% - 100% ","70 °F+ ",16,80,100,90,70,NA
+"64","Sake Yeast ","White Labs ","80% - 100% ","70 °F+ ",16,80,100,90,70,NA
+"65","California Pinot Noir Yeast ","White Labs ","80% - 100% ","70 °F+ ",16,80,100,90,70,NA
+"66","Sake #9 Yeast ","White Labs ","72% - 78% ","62 °F - 68 °F ",16,72,78,75,62,68
+"67","Champagne Yeast ","White Labs ","75% - 100% ","70 °F - 75 °F ",17,75,100,87.5,70,75
+"68","Avize Wine Yeast ","White Labs ","80% - 100% ","60 °F - 90 °F ",15,80,100,90,60,90
+"69","Sweet Mead/Wine Yeast ","White Labs ","0% - 75% ","70 °F - 75 °F ",15,0,75,37.5,70,75
+"70","Steinberg-Geisenheim Wine Yeast ","White Labs ","80% - 100% ","50 °F - 90 °F ",14,80,100,90,50,90
+"71","Chardonnay White Wine Yeast ","White Labs ","80% - 100% ","50 °F - 90 °F ",14,80,100,90,50,90
+"72","French White Wine Yeast ","White Labs ","80% - 100% ","60 °F - 90 °F ",16,80,100,90,60,90
+"73","Merlot Red Wine Yeast ","White Labs ","80% - 100% ","60 °F - 90 °F ",18,80,100,90,60,90
+"74","Assmanshausen Wine Yeast ","White Labs ","80% - 100% ","50 °F - 90 °F ",16,80,100,90,50,90
+"75","French Red Wine Yeast ","White Labs ","80% - 100% ","60 °F - 90 °F ",17,80,100,90,60,90
+"76","Cabernet Red Wine Yeast ","White Labs ","80% - 100% ","60 °F - 90 °F ",16,80,100,90,60,90
+"77","Suremain Burgundy Wine Yeast ","White Labs ","80% - 100% ","60 °F - 90 °F ",16,80,100,90,60,90
+"78","English Cider Yeast ","White Labs ","80% - 100% ","68 °F - 75 °F ",12,80,100,90,68,75
+"79","Pilsner Lager Yeast ","White Labs ","72% - 77% ","50 °F - 55 °F ",10,72,77,74.5,50,55
+"80","Czech Budejovice Lager Yeast ","White Labs ","75% - 80% ","50 °F - 55 °F ",10,75,80,77.5,50,55
+"81","San Francisco Lager Yeast ","White Labs ","65% - 70% ","58 °F - 65 °F ",12,65,70,67.5,58,65
+"82","Belgian Lager Yeast ","White Labs ","72% - 78% ","50 °F - 55 °F ",10,72,78,75,50,55
+"83","Oktoberfest/Märzen Lager Yeast ","White Labs ","65% - 73% ","52 °F - 58 °F ",12,65,73,69,52,58
+"84","German Lager Yeast ","White Labs ","74% - 79% ","50 °F - 55 °F ",10,74,79,76.5,50,55
+"85","German Bock Lager Yeast ","White Labs ","70% - 76% ","48 °F - 55 °F ",12,70,76,73,48,55
+"86","Southern German Lager Yeast ","White Labs ","68% - 76% ","50 °F - 55 °F ",10,68,76,72,50,55
+"87","American Lager Yeast ","White Labs ","75% - 80% ","50 °F - 55 °F ",10,75,80,77.5,50,55
+"88","Munich Helles Yeast ","White Labs ","68% - 72% ","48 °F - 52 °F ",10,68,72,70,48,52
+"89","Cry Havoc ","White Labs ","66% - 70% ","55 °F - 58 °F ",NA,66,70,68,55,58
+"90","Zurich Lager Yeast ","White Labs ","70% - 80% ","50 °F - 55 °F ",NA,70,80,75,50,55
+"91","Old Bavarian Lager Yeast ","White Labs ","66% - 73% ","50 °F - 55 °F ",12,66,73,69.5,50,55
+"92","Mexican Lager Yeast ","White Labs ","70% - 78% ","50 °F - 55 °F ",10,70,78,74,50,55
+"93","Budvar Lager ","Wyeast ","71% - 75% ","48 °F - 56 °F ",9,71,75,73,48,56
+"94","Urquell Lager ","Wyeast ","72% - 76% ","48 °F - 56 °F ",9,72,76,74,48,56
+"95","Pilsen Lager ","Wyeast ","71% - 75% ","48 °F - 56 °F ",9,71,75,73,48,56
+"96","American Lager ","Wyeast ","73% - 77% ","48 °F - 58 °F ",9,73,77,75,48,58
+"97","Danish lager ","Wyeast ","73% - 77% ","46 °F - 56 °F ",9,73,77,75,46,56
+"98","California Lager ","Wyeast ","67% - 71% ","58 °F - 68 °F ",9,67,71,69,58,68
+"99","Bohemian Lager ","Wyeast ","73% - 77% ","45 °F - 68 °F ",9,73,77,75,45,68
+"100","Bavarian Lager ","Wyeast ","73% - 77% ","46 °F - 58 °F ",9,73,77,75,46,58
+"101","Czech Pils ","Wyeast ","70% - 74% ","50 °F - 58 °F ",9,70,74,72,50,58
+"102","Munich Lager ","Wyeast ","70% - 74% ","48 °F - 56 °F ",9,70,74,72,48,56
+"103","Octoberfest Lager Blend ","Wyeast ","73% - 77% ","48 °F - 58 °F ",9,73,77,75,48,58
+"104","German Ale ","Wyeast ","73% - 77% ","55 °F - 68 °F ",11,73,77,75,55,68
+"105","American Wheat ","Wyeast ","74% - 78% ","58 °F - 74 °F ",10,74,78,76,58,74
+"106","London Ale ","Wyeast ","73% - 77% ","60 °F - 72 °F ",11,73,77,75,60,72
+"107","American Ale ","Wyeast ","73% - 77% ","60 °F - 72 °F ",11,73,77,75,60,72
+"108","Irish Ale ","Wyeast ","71% - 75% ","62 °F - 72 °F ",12,71,75,73,62,72
+"109","British Ale ","Wyeast ","73% - 75% ","64 °F - 72 °F ",10,73,75,74,64,72
+"110","Whitbread Ale ","Wyeast ","68% - 72% ","64 °F - 75 °F ",10,68,72,70,64,75
+"111","Ringwood Ale ","Wyeast ","68% - 72% ","64 °F - 74 °F ",10,68,72,70,64,74
+"112","American Ale II ","Wyeast ","72% - 76% ","60 °F - 72 °F ",10,72,76,74,60,72
+"113","Thames Valley Ale ","Wyeast ","72% - 76% ","62 °F - 72 °F ",10,72,76,74,62,72
+"114","London Ale III ","Wyeast ","71% - 75% ","64 °F - 74 °F ",10,71,75,73,64,74
+"115","Northwest Ale ","Wyeast ","67% - 71% ","65 °F - 75 °F ",10,67,71,69,65,75
+"116","British Ale II ","Wyeast ","73% - 76% ","63 °F - 75 °F ",10,73,76,74.5,63,75
+"117","Denny's Favorite 50 ","Wyeast ","74% - 76% ","60 °F - 70 °F ",10,74,76,75,60,70
+"118","West Yorkshire Ale ","Wyeast ","67% - 71% ","64 °F - 72 °F ",9,67,71,69,64,72
+"119","Scottish Ale ","Wyeast ","69% - 73% ","55 °F - 75 °F ",12,69,73,71,55,75
+"120","London ESB Ale ","Wyeast ","67% - 71% ","64 °F - 72 °F ",9,67,71,69,64,72
+"121","Kölsch ","Wyeast ","73% - 77% ","56 °F - 70 °F ",10,73,77,75,56,70
+"122","Belgian Abbey ","Wyeast ","74% - 78% ","68 °F - 78 °F ",12,74,78,76,68,78
+"123","Belgian Strong Ale ","Wyeast ","74% - 78% ","64 °F - 80 °F ",13,74,78,76,64,80
+"124","Belgian Abbey II ","Wyeast ","73% - 77% ","65 °F - 75 °F ",12,73,77,75,65,75
+"125","Bavarian Wheat Blend ","Wyeast ","73% - 77% ","64 °F - 74 °F ",10,73,77,75,64,74
+"126","Weihenstephan Weizen ","Wyeast ","73% - 77% ","64 °F - 75 °F ",10,73,77,75,64,75
+"127","German Wheat ","Wyeast ","70% - 76% ","63 °F - 75 °F ",10,70,76,73,63,75
+"128","Forbidden Fruit ","Wyeast ","72% - 76% ","63 °F - 76 °F ",12,72,76,74,63,76
+"129","Belgian Ardennes ","Wyeast ","72% - 76% ","65 °F - 76 °F ",12,72,76,74,65,76
+"130","Bavarian Wheat ","Wyeast ","70% - 76% ","64 °F - 75 °F ",10,70,76,73,64,75
+"131","French Saison ","Wyeast ","77% - 83% ","65 °F - 77 °F ",12,77,83,80,65,77
+"132","Belgian Saison ","Wyeast ","76% - 80% ","70 °F - 95 °F ",12,76,80,78,70,95
+"133","Trappist High Gravity ","Wyeast ","74% - 78% ","64 °F - 78 °F ",12,74,78,76,64,78
+"134","Belgian Wheat ","Wyeast ","72% - 76% ","64 °F - 74 °F ",12,72,76,74,64,74
+"135","Belgian Wit ","Wyeast ","72% - 76% ","62 °F - 75 °F ",12,72,76,74,62,75
+"136","Safale S-04 ","Fermentis ","75%+ ","54 °F - 77 °F ",NA,75,NA,NA,54,77
+"137","Safale US-05 ","Fermentis ","81%+ ","54 °F - 77 °F ",NA,81,NA,NA,54,77
+"138","Safale K-97 ","Fermentis ","81%+ ","54 °F - 77 °F ",NA,81,NA,NA,54,77
+"139","Saflager S-23 ","Fermentis ","82%+ ","48 °F - 72 °F ",NA,82,NA,NA,48,72
+"140","Saflager W-34/70 ","Fermentis ","83%+ ","48 °F - 72 °F ",NA,83,NA,NA,48,72
+"141","Saflager S-189 ","Fermentis ","84%+ ","48 °F - 72 °F ",NA,84,NA,NA,48,72
+"142","Safbrew T-58 ","Fermentis ","70%+ ","54 °F - 77 °F ",NA,70,NA,NA,54,77
+"143","Safbrew S-33 ","Fermentis ","70%+ ","54 °F - 77 °F ",NA,70,NA,NA,54,77
+"144","Safbrew WB-06 ","Fermentis ","86%+ ","54 °F - 77 °F ",NA,86,NA,NA,54,77
+"145","Vermont Ale ","The Yeast Bay ","75% - 82% ","66 °F - 70 °F ",NA,75,82,78.5,66,70
+"146","Wallonian Farmhouse ","The Yeast Bay ","81% - 88% ","68 °F - 78 °F ",NA,81,88,84.5,68,78
+"147","Northeastern Abbey ","The Yeast Bay ","77% - 81% ","68 °F - 73 °F ",NA,77,81,79,68,73
+"148","Saison Blend ","The Yeast Bay ","76% - 82% ","68 °F - 80 °F ",NA,76,82,79,68,80
+"149","Dry Belgian Ale ","The Yeast Bay ","85% - 100% ","70 °F - 76 °F ",NA,85,100,92.5,70,76
+"150","Scottish Heavy ","East Coast Yeast ","77% - 80% ","60 °F - 68 °F ",NA,77,80,78.5,60,68
+"151","Saison Brasserie ","East Coast Yeast ","80%+ ","75 °F - 85 °F ",NA,80,NA,NA,75,85
+"152","Belgian Abbaye ","East Coast Yeast ","74% - 76% ","66 °F - 72 °F ",NA,74,76,75,66,72
+"153","Old Newark Ale ","East Coast Yeast ","76%+ ","60 °F - 68 °F ",NA,76,NA,NA,60,68
+"154","Belgian White ","East Coast Yeast ","76%+ ","70 °F - 76 °F ",NA,76,NA,NA,70,76
+"155","Old Newark Beer ","East Coast Yeast ","78%+ ","58 °F - 68 °F ",NA,78,NA,NA,58,68
+"156","Belgian Abbaye 2 ","East Coast Yeast ","74% - 76% ","66 °F - 72 °F ",NA,74,76,75,66,72
+"157","Saison Single ","East Coast Yeast ","76% - 78% ","75 °F - 82 °F ",NA,76,78,77,75,82
+"158","Burton Union ","East Coast Yeast ","73% - 75% ","64 °F - 69 °F ",NA,73,75,74,64,69
+"159","British Mild ","East Coast Yeast ","66% - 70% ","60 °F - 68 °F ",NA,66,70,68,60,68
+"160","Kolschbier ","East Coast Yeast ","75% - 78% ","58 °F - 66 °F ",NA,75,78,76.5,58,66
+"161","Kellerbier ","East Coast Yeast ","74% - 76% ","46 °F - 54 °F ",NA,74,76,75,46,54
+"162","Northeast Ale ","East Coast Yeast ","73% - 75% ","65 °F - 70 °F ",NA,73,75,74,65,70
+"163","Blanche Yeast ","Brewferm ","Any ","64 °F - 73 °F ",NA,NA,NA,NA,64,73
+"164","Lager Yeast ","Brewferm ","Any ","50 °F - 59 °F ",NA,NA,NA,NA,50,59
+"165","Top Yeast ","Brewferm ","Any ","64 °F - 77 °F ",NA,NA,NA,NA,64,77
+"166","Cooper Ale ","Coopers ","Any ","62 °F - 72 °F ",NA,NA,NA,NA,62,72
+"167","BRY-97 American West Coast Ale ","Danstar ","75% - 80% ","59 °F - 72 °F ",12,75,80,77.5,59,72
+"168","Belle Saison Belgian Saison-Style ","Danstar ","75% - 80% ","59 °F - 95 °F ",14,75,80,77.5,59,95
+"169","CBC-1 Yeast for Cask & Bottle Conditioning ","Danstar ","70% - 75% ","68 °F - 77 °F ",12,70,75,72.5,68,77
+"170","Diamond Lager ","Danstar ","75% - 80% ","50 °F - 59 °F ",7,75,80,77.5,50,59
+"171","Munich Wheat ","Danstar ","75% - 80% ","63 °F - 76 °F ",7,75,80,77.5,63,76
+"172","Nottingham Ale ","Danstar ","75% - 80% ","50 °F - 73 °F ",9,75,80,77.5,50,73
+"173","Windsor British Style ","Danstar ","70% - 75% ","59 °F - 72 °F ",7,70,75,72.5,59,72
+"174","Craft Series Cider Yeast ","Mangrove Jack's ","75% - 80% ","54 °F - 82 °F ",NA,75,80,77.5,54,82
+"175","Newcastle Dark Ale Yeast ","Mangrove Jack's ","70% - 75% ","64 °F - 72 °F ",NA,70,75,72.5,64,72
+"176","British Ale Yeast ","Mangrove Jack's ","75% - 80% ","57 °F - 72 °F ",NA,75,80,77.5,57,72
+"177","Workhorse Yeast ","Mangrove Jack's ","75% - 80% ","68 °F - 90 °F ",NA,75,80,77.5,68,90
+"178","Bavarian Wheat Yeast ","Mangrove Jack's ","70% - 75% ","59 °F - 86 °F ",NA,70,75,72.5,59,86
+"179","Belgian Ale Yeast ","Mangrove Jack's ","80% - 85% ","79 °F - 90 °F ",14,80,85,82.5,79,90
+"180","US West Coast Yeast ","Mangrove Jack's ","75% - 80% ","59 °F - 74 °F ",NA,75,80,77.5,59,74
+"181","Burton Union Yeast ","Mangrove Jack's ","75% - 80% ","62 °F - 74 °F ",NA,75,80,77.5,62,74
+"182","Bohemian Lager Yeast ","Mangrove Jack's ","75% - 80% ","50 °F - 59 °F ",NA,75,80,77.5,50,59
+"183","German Ale II ","White Labs ","73% - 80% ","65 °F - 70 °F ",10,73,80,76.5,65,70
+"184","Southwold Ale ","White Labs ","68% - 75% ","66 °F - 69 °F ",10,68,75,71.5,66,69
+"185","Premium Bitter Ale ","White Labs ","70% - 75% ","67 °F - 70 °F ",10,70,75,72.5,67,70
+"186","Klassic Ale Yeast ","White Labs ","66% - 74% ","66 °F - 70 °F ",10,66,74,70,66,70
+"187","British Cask Ale ","Wyeast ","74% - 77% ","63 °F - 72 °F ",NA,74,77,75.5,63,72
+"188","Burton IPA Blend ","Wyeast ","71% - 74% ","64 °F - 74 °F ",10,71,74,72.5,64,74
+"189","West Coast IPA ","Wyeast ","73% - 80% ","62 °F - 74 °F ",10,73,80,76.5,62,74
+"190","European Ale Yeast ","Wyeast ","67% - 71% ","62 °F - 72 °F ",10,67,71,69,62,72
+"191","Belgian Stout ","Wyeast ","70% - 85% ","65 °F - 75 °F ",12,70,85,77.5,65,75
+"192","English Special Bitter Yeast ","Wyeast ","68% - 72% ","64 °F - 72 °F ",9,68,72,70,64,72
+"193","Thames Valley II Yeast ","Wyeast ","72% - 78% ","60 °F - 70 °F ",10,72,78,75,60,70
+"194","Cerveza Mexicana Lager ","Wyeast ","71% - 76% ","48 °F - 56 °F ",9,71,76,73.5,48,56
+"195","European Lager II ","Wyeast ","73% - 77% ","46 °F - 56 °F ",9,73,77,75,46,56
+"196","Rasenmäher Lager Yeast ","Wyeast ","73% - 77% ","48 °F - 68 °F ",9,73,77,75,48,68
+"197","North American Lager ","Wyeast ","70% - 76% ","48 °F - 56 °F ",9,70,76,73,48,56
+"198","Munich Lager II ","Wyeast ","72% - 74% ","52 °F - 62 °F ",10,72,74,73,52,62
+"199","Hella Bock ","Wyeast ","70% - 74% ","48 °F - 56 °F ",12,70,74,72,48,56
+"200","Kölsch II ","Wyeast ","73% - 77% ","55 °F - 70 °F ",10,73,77,75,55,70
+"201","Staro Prague Lager Yeast ","Wyeast ","70% - 74% ","50 °F - 58 °F ",11,70,74,72,50,58
+"202","Berliner-Weisse Blend ","Wyeast ","73% - 77% ","68 °F - 72 °F ",6,73,77,75,68,72
+"203","De Bom Sour Blend ","Wyeast ","75% - 85% ","80 °F - 85 °F ",10,75,85,80,80,85
+"204","Oud Bruin Blend ","Wyeast ","70% - 80% ","80 °F - 85 °F ",10,70,80,75,80,85
+"205","Belgian Lambic Blend ","Wyeast ","70% - 80% ","63 °F - 75 °F ",11,70,80,75,63,75
+"206","Leuven Pale Ale Yeast ","Wyeast ","75% - 78% ","65 °F - 80 °F ",12,75,78,76.5,65,80
+"207","Belgian Schelde Ale ","Wyeast ","73% - 77% ","62 °F - 74 °F ",11,73,77,75,62,74
+"208","Biere de Garde ","Wyeast ","74% - 79% ","70 °F - 84 °F ",12,74,79,76.5,70,84
+"209","Farmhouse Ale ","Wyeast ","74% - 79% ","70 °F - 84 °F ",12,74,79,76.5,70,84
+"210","Flanders Golden Ale Yeast ","Wyeast ","74% - 78% ","64 °F - 80 °F ",12,74,78,76,64,80
+"211","Roselare Belgian Blend ","Wyeast ","80%+ ","55 °F - 80 °F ",11,80,NA,NA,55,80
+"212","Trappist Blend ","Wyeast ","75% - 80% ","68 °F - 85 °F ",12,75,80,77.5,68,85
+"213","Dutch Castle ","Wyeast ","74% - 79% ","65 °F - 80 °F ",12,74,79,76.5,65,80
+"214","Canadian/Belgian Ale ","Wyeast ","75% - 79% ","65 °F - 80 °F ",12,75,79,77,65,80
+"215","Sweet Mead ","Wyeast ","Any ","65 °F - 75 °F ",11,NA,NA,NA,65,75
+"216","Lactobacillus ","Wyeast ","Any ","60 °F - 95 °F ",NA,NA,NA,NA,60,95
+"217","Brettanomyces Bruxellensis ","Wyeast ","80% - 85% ","60 °F - 75 °F ",12,80,85,82.5,60,75
+"218","Lactobacillus Brevis ","Wyeast ","Any ","60 °F - 95 °F ",9,NA,NA,NA,60,95
+"219","Lactobacillus ","Wyeast ","Any ","60 °F - 95 °F ",NA,NA,NA,NA,60,95
+"220","Brettanomyces Lambicus ","Wyeast ","80% - 85% ","60 °F - 75 °F ",12,80,85,82.5,60,75
+"221","Pediococcus ","Wyeast ","Any ","65 °F - 95 °F ",NA,NA,NA,NA,65,95
+"222","Old Ale Blend ","Wyeast ","75% - 80% ","68 °F - 75 °F ",12,75,80,77.5,68,75
+"223","Weiss ","mauribrew ","Any ","59 °F - 86 °F ",NA,NA,NA,NA,59,86
+"224","Lager 497 ","mauribrew ","Any ","50 °F - 59 °F ",NA,NA,NA,NA,50,59
+"225","Ale 514 ","mauribrew ","Any ","68 °F - 90 °F ",10,NA,NA,NA,68,90
+"226","Copenhagen Lager Yeast ","White Labs ","72% - 78% ","50 °F - 58 °F ",10,72,78,75,50,58
+"227","ROGUE Pacman Yeast ","Wyeast ","72% - 78% ","60 °F - 72 °F ",12,72,78,75,60,72
+"228","Chico Ale ","RVA ","70% - 75% ","67 °F - 73 °F ",11,70,75,72.5,67,73
+"229","Boston Ale ","RVA ","74% - 80% ","65 °F - 73 °F ",11,74,80,77,65,73
+"230","Pacman Ale ","RVA ","74% - 78% ","62 °F - 72 °F ",12,74,78,76,62,72
+"231","Hoptopper Ale ","RVA ","75% - 80% ","64 °F - 76 °F ",11,75,80,77.5,64,76
+"232","Chiswick Ale ","RVA ","65% - 72% ","65 °F - 70 °F ",8,65,72,68.5,65,70
+"233","Manchester Ale ","RVA ","70% - 75% ","65 °F - 72 °F ",10,70,75,72.5,65,72
+"234","Scotch Ale ","RVA ","70% - 75% ","65 °F - 70 °F ",11,70,75,72.5,65,70
+"235","Dublin Ale ","RVA ","70% - 75% ","65 °F - 70 °F ",12,70,75,72.5,65,70
+"236","German Ale I ","RVA ","70% - 76% ","60 °F - 68 °F ",10,70,76,73,60,68
+"237","Trappist Ale I ","RVA ","75% - 80% ","65 °F - 72 °F ",12,75,80,77.5,65,72
+"238","Trappist Ale II ","RVA ","75% - 80% ","65 °F - 72 °F ",12,75,80,77.5,65,72
+"239","Trappist Ale III ","RVA ","75% - 80% ","65 °F - 72 °F ",12,75,80,77.5,65,72
+"240","Trappist Ale IV ","RVA ","75% - 80% ","65 °F - 72 °F ",12,75,80,77.5,65,72
+"241","Belgian 1833 Ale ","RVA ","73% - 80% ","67 °F - 70 °F ",8,73,80,76.5,67,70
+"242","Belgian Gnome Ale ","RVA ","73% - 80% ","67 °F - 75 °F ",11,73,80,76.5,67,75
+"243","Verboten Ale ","RVA ","70% - 75% ","65 °F - 75 °F ",12,70,75,72.5,65,75
+"244","Golden Strong Ale ","RVA ","73% - 80% ","68 °F - 75 °F ",13,73,80,76.5,68,75
+"245","Saison I ","RVA ","65% - 75% ","75 °F - 85 °F ",10,65,75,70,75,85
+"246","Saison II ","RVA ","75% - 82% ","67 °F - 77 °F ",10,75,82,78.5,67,77
+"247","Ghost Ale ","RVA ","77% - 84% ","65 °F - 80 °F ",10,77,84,80.5,65,80
+"248","American Lager ","RVA ","75% - 80% ","50 °F - 55 °F ",8,75,80,77.5,50,55
+"249","München Lager ","RVA ","75% - 80% ","58 °F - 65 °F ",12,75,80,77.5,58,65
+"250","Oktoberfest Lager ","RVA ","65% - 73% ","52 °F - 58 °F ",12,65,73,69,52,58
+"251","Czech Lager ","RVA ","75% - 80% ","50 °F - 55 °F ",8,75,80,77.5,50,55
+"252","Flagship ","Imperial Organic Yeast ","73% - 77% ","60 °F - 72 °F ",NA,73,77,75,60,72
+"253","Pub ","Imperial Organic Yeast ","69% - 74% ","64 °F - 70 °F ",NA,69,74,71.5,64,70
+"254","House ","Imperial Organic Yeast ","73% - 75% ","62 °F - 70 °F ",NA,73,75,74,62,70
+"255","Darkness ","Imperial Organic Yeast ","71% - 75% ","62 °F - 72 °F ",NA,71,75,73,62,72
+"256","Barbarian ","Imperial Organic Yeast ","73% - 74% ","62 °F - 70 °F ",NA,73,74,73.5,62,70
+"257","Independence ","Imperial Organic Yeast ","72% - 76% ","60 °F - 72 °F ",NA,72,76,74,60,72
+"258","Four Square ","Imperial Organic Yeast ","68% - 72% ","64 °F - 72 °F ",NA,68,72,70,64,72
+"259","Joystick ","Imperial Organic Yeast ","73% - 77% ","60 °F - 70 °F ",NA,73,77,75,60,70
+"260","Sovereign ","Imperial Organic Yeast ","73% - 77% ","60 °F - 70 °F ",NA,73,77,75,60,70
+"261","Citrus ","Imperial Organic Yeast ","74% - 78% ","67 °F - 80 °F ",NA,74,78,76,67,80
+"262","Kaiser ","Imperial Organic Yeast ","73% - 77% ","56 °F - 65 °F ",NA,73,77,75,56,65
+"263","Stefon ","Imperial Organic Yeast ","73% - 77% ","63 °F - 73 °F ",NA,73,77,75,63,73
+"264","Deiter ","Imperial Organic Yeast ","73% - 77% ","60 °F - 69 °F ",NA,73,77,75,60,69
+"265","Triple Double ","Imperial Organic Yeast ","74% - 78% ","65 °F - 77 °F ",NA,74,78,76,65,77
+"266","Triple Napoleon ","Imperial Organic Yeast ","77% - 83% ","65 °F - 78 °F ",NA,77,83,80,65,78
+"267","Gnome ","Imperial Organic Yeast ","72% - 76% ","65 °F - 75 °F ",NA,72,76,74,65,75
+"268","Workhorse ","Imperial Organic Yeast ","72% - 77% ","65 °F - 75 °F ",NA,72,77,74.5,65,75
+"269","Rustic ","Imperial Organic Yeast ","72% - 76% ","68 °F - 80 °F ",NA,72,76,74,68,80
+"270","Monastic ","Imperial Organic Yeast ","74% - 78% ","68 °F - 78 °F ",NA,74,78,76,68,78
+"271","Fish Finder ","Imperial Organic Yeast ","74% - 78% ","65 °F - 73 °F ",NA,74,78,76,65,73
+"272","Whiteout ","Imperial Organic Yeast ","72% - 76% ","62 °F - 72 °F ",NA,72,76,74,62,72
+"273","Global ","Imperial Organic Yeast ","73% - 77% ","46 °F - 56 °F ",NA,73,77,75,46,56
+"274","Fest ","Imperial Organic Yeast ","71% - 75% ","46 °F - 56 °F ",NA,71,75,73,46,56
+"275","Gateway ","Imperial Organic Yeast ","72% - 76% ","47 °F - 55 °F ",NA,72,76,74,47,55
+"276","Harvest ","Imperial Organic Yeast ","70% - 74% ","50 °F - 60 °F ",NA,70,74,72,50,60
+"277","Que Bueno ","Imperial Organic Yeast ","73% - 77% ","47 °F - 55 °F ",NA,73,77,75,47,55
+"278","Cablecar ","Imperial Organic Yeast ","71% - 75% ","55 °F - 65 °F ",NA,71,75,73,55,65

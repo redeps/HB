@@ -48,17 +48,20 @@ checkDec <- function(brewhouse_efficiency){
 }
 
 
-FGCalc <- function(Malts,Grams_Grain, Grainprops,Target_Batch_L, yeast_attenuation=NULL, brewhouse_efficiency=NULL){
+FGCalc <- function(Malts,Grams_Grain, Grainprops,Target_Batch_L, yeast, brewhouse_efficiency=NULL){
   if(sum(Grainprops) != 100){
     Grainprops <- getGrainprops(Malts)
   }
   Target_Batch_gal <- ltogal(Target_Batch_L)
   #print(Target_Batch_gal)
   #Test to see if the two following work:
+  yeastinfo <- searchYeasts(yeast)
+  yeast_attenuation <- ifelse(nrow(yeastinfo) == 1, yeastinfo$avgatt, NULL)
   if(is.null(yeast_attenuation)){
     yeast_attenuation <- readline(prompt = "Enter yeast attenuation (as percentage) to see expected FG, or hit enter to skip this step: ")
     yeast_attenuation<- ifelse(!is.null(yeast_attenuation), as.numeric(yeast_attenuation), NA )
   }
+  
   if(is.null(brewhouse_efficiency)){
     brewhouse_efficiency <- readline(prompt = "Enter brewhouse_efficiency if different from default, 0.72 (as decimal), or hit Enter to keep default: ")
     brewhouse_efficiency <- checkDec(brewhouse_efficiency)
@@ -101,19 +104,17 @@ FGCalc <- function(Malts,Grams_Grain, Grainprops,Target_Batch_L, yeast_attenuati
   #print(paste0("OG at 100% efficiency: ", OG100))
   print(paste0("OG at brewhouse efficiency: ", OGBEgal," per gallon"))
   print(paste0("OG at brewhouse efficiency: ",OGBE))
-  if(!is.na(yeast_attenuation)){
+  if(!is.null(yeast_attenuation)){
     EFG <- round(OGBEgal*(1-(yeast_attenuation/100))+1000)
     EABV <- ((OGBE - EFG)*131)/1000
     print(paste0("Expected FG: ", EFG))
     print(paste0("Expected ABV: ", EABV))
-  }
-  if(!is.na(yeast_attenuation)){
     gravity_notes<-c(OGBE,OGBEgal,SRM,MCU,EFG,EABV)
   }
-  if(is.na(yeast_attenuation)){
+  if(is.null(yeast_attenuation)){
     gravity_notes<-c(OGBE,OGBEgal,SRM,MCU,"","")
   }
-  gravity_notes <- list(gravity_notes,Weightframe)
+  gravity_notes <- list(gravity_notes,Weightframe, yeastinfo)
   return(gravity_notes)
 }
 
