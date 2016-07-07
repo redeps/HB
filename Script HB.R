@@ -19,29 +19,30 @@ library(useful)
 library(jpeg)
 library(plotly)
 
+
+
 ###################ENTER VALUES FOR FINAL COMPUTATION###############################
 
-yeast <- "California Ale"
-Hops<-c("Cascade","Willamette")
-Hopweights <-list(55, 23)
+
+
+yeast <- "California Ale V"
+Hops<-c("Citra")
+Hopweights <-list(207)
 Boilmin <- list(60)
-Malts<-list("Cara","Barley")
+Malts<-list("Maris Otter","Crystal Malt 60","Dark Crystal Malt")
 Target_Batch_L <- 20
-Grams_Grain <- 6000
+Grams_Grain <- 7348
 Boil_time_Hr<-1
-Target_Mash_Temp <- 67
-Target_Batch_L <- 19
-Boil_time_Hr <- 1
+Target_Mash_Temp <- 64
 #celcius
-Target_Mash_Temp<-64
 Grain_Temp<-NULL
 #percentage
 brewhouse_efficiency=NULL
-BeerName=NULL
-BeerType=NULL
+BeerName="Citra Vestkyst"
+BeerType="West coast IPA"
 
 #Must equal lenght of Malts, and must add up to 100
-Grainprops <-c(98,2)
+Grainprops <-c(92,4,4)
 
 #########################################################################################
 
@@ -66,13 +67,16 @@ gtooz<-function(l){
   return(oz)
 }
 
-source("U:/R/HB/maltsdirectory.R")
-source("U:/R/HB/hopsdirectory.R")
-source("U:/R/HB/boilmashcalc.R")
-source("U:/R/HB/gravitycolourcalc.R")
-source("U:/R/HB/ibucalc.R")
-source("U:/R/HB/yeastdirectory.R")
-source("U:/R/HB/overallfunction.R")
+#setwd("S:/Peder/training/R/HB")
+#getwd()
+
+source(paste0(getwd(),"/maltsdirectory.R"))
+source(paste0(getwd(),"/hopsdirectory.R"))
+source(paste0(getwd(),"/boilmashcalc.R"))
+source(paste0(getwd(),"/gravitycolourcalc.R"))
+source(paste0(getwd(),"/ibucalc.R"))
+source(paste0(getwd(),"/yeastdirectory.R"))
+source(paste0(getwd(),"/overallfunction.R"))
 
 
 #for yeasts:
@@ -84,14 +88,12 @@ source("U:/R/HB/overallfunction.R")
 #OGBE <- as.numeric(FGCalc(Malts, 4350, Grainprops, 19)[[1]][1])
 #IBUCalc(Hops, Hopweights, 11, OGBE, Boilmin)
 
-#create R markdown html
-#copy that into an r file into a new directory for each run
-#markdown document will refer to directory's version of the numbers and plots
 
 
+#Function elements:
+#RunFGCalc(Malts, Grams_Grain, Grainprops, Target_Batch_L, Hops, Hopweights, Boilmin, Boil_time_Hr, Target_Mash_Temp, yeast, Grain_Temp=NULL, brewhouse_efficiency=NULL, BeerName=NULL, BeerType=NULL)
 
-
-RunFGCalc(Malts, 4350, Grainprops, 19, Hops, Hopweights, Boilmin, 1, 64, yeast, 22,70)
+RunFGCalc(Malts, Grams_Grain, Grainprops, Target_Batch_L, Hops, Hopweights, Boilmin, Boil_time_Hr, Target_Mash_Temp, yeast, Grain_Temp=NULL, brewhouse_efficiency=NULL, BeerName, BeerType)
 
 load(file = "U:/R/HB/0706161331.Rdata")
 suppressWarnings(returnlist[15])

@@ -8,7 +8,37 @@
 #Hopweights <-list(50)
 #Boilmin <- list(60)
 #OGBE <- (FGCalc(Malts, 4350, Grainprops, 19)[1])
-IBUCalc <- function(Hops, Hopweigts, Target_Batch_L, OGBE, Boilmin){
+divHoplist <- function(Hops, Hopweights){
+  NewHops <- c()
+  NewHopweights <- c()
+  NewBoilmins <- c()
+  for(hop in Hops){
+    answer <- as.numeric(readline(prompt = paste("How many times will you be adding",hop,"?")))
+    hopname <- c()
+    mins <- c()
+    wgts <- c()
+    for(addition in 1:answer){
+      minute <- as.numeric(readline(prompt = paste("Enter minute mark for addition number",addition,":")))
+      weight <- as.numeric(readline(prompt = paste("Enter weight for addition number",addition,":")))
+      hopname[addition] <- hop
+      mins[addition] <- minute
+      wgts[addition] <- weight
+    }
+    NewHops <- append(NewHops,hopname)
+    NewHopweights <- append(NewHopweights, wgts)
+    NewBoilmins <- append(NewBoilmins, mins)
+  }
+  return(list(NewHops, NewHopweights,NewBoilmins))
+}
+
+
+
+
+IBUCalc <- function(Hops, Hopweights, Target_Batch_L, OGBE, Boilmin){
+  Newvalues <- divHoplist(Hops, Hopweights)
+  Hops <- Newvalues[[1]]
+  Hopweights <- Newvalues[[2]]
+  Boilmin <- Newvalues[[3]]
   Weightframe2 <- data.frame(data.table(Hops, Hopweights,Boilmin))
   Bigness_factor <- 1.65 * (0.000125**((OGBE/1000)-1))
   #print(Bigness_factor)
@@ -58,9 +88,9 @@ IBUCalc <- function(Hops, Hopweigts, Target_Batch_L, OGBE, Boilmin){
   }
   Weightframe2$AAconc<-(as.numeric(Weightframe2$Hopweights) * (Weightframe2$AA/100) * 1000)/ Target_Batch_L
   Weightframe2$IBU <- (Weightframe2$AAconc * Weightframe2$decimal_alpha_acid_util)
-  print(Weightframe2)
+
   print(paste0("Expected IBUs: ", round(sum(Weightframe2$IBU))))
-  return(sum(Weightframe2$IBU))
+  return(Weightframe2)
 }
 
 #IBUCalc(Hops, Hopweights, 11, OGBE, Boilmin)

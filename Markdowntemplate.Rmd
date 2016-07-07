@@ -10,23 +10,24 @@ This is a description of your beer and a list of details for brewing.
 
 > Using the following file:
 ```{r, echo = FALSE}
+dir <- getwd()
 suppressWarnings(library(ggplot2))
 suppressMessages(suppressWarnings(library(plotly)))
-stjerne <- data.frame(read.csv(file = "U:/R/HB/XY.csv"))
+stjerne <- data.frame(read.csv(file = "XY.csv"))
 stjerne$Group <- factor(6)
-south <- data.frame(read.csv(file = "U:/R/HB/XYsouth.csv"))
+south <- data.frame(read.csv(file = "XYsouth.csv"))
 south$Group <- factor(7)
-hopimg <- data.frame(read.csv(file = "U:/R/HB/XYhop.csv"))
+hopimg <- data.frame(read.csv(file = "XYhop.csv"))
 hopimg$Group <- factor(7)
-leaves <- data.frame(read.csv(file = "U:/R/HB/XYleaves.csv"))
+leaves <- data.frame(read.csv(file = "XYleaves.csv"))
 leaves$Group <- as.factor(leaves$Group)
-stem <- data.frame(read.csv(file = "U:/R/HB/XYstem.csv"))
+stem <- data.frame(read.csv(file = "XYstem.csv"))
 stem$Group <- factor(10)
-lineimg <- data.frame(read.csv(file = "U:/R/HB/XYline.csv"))
+lineimg <- data.frame(read.csv(file = "XYline.csv"))
 lineimg$Group <- factor(11)
-brew <- data.frame(read.csv(file = "U:/R/HB/XYbrew.csv"))
+brew <- data.frame(read.csv(file = "XYbrew.csv"))
 brew$Group <- factor(7)
-star <- data.frame(read.csv(file = "U:/R/HB/XYstar.csv"))
+star <- data.frame(read.csv(file = "XYstar.csv"))
 star$Group <- factor(11)
 
 
@@ -34,7 +35,8 @@ star$Group <- factor(11)
 #Finding data
 suppressWarnings(library(knitr))
 closestTimestamp <- as.numeric(gsub(" ","", format(Sys.time(), "%d %m %y %H %M")))
-files <- list.files("U:/R/HB")
+
+files <- list.files(dir)
 timestamps <- as.numeric(gsub("[^$[:digit:]+{1}]", "", files))
 for(item in 1:length(timestamps)){
   if(!is.na(timestamps[item])){
@@ -45,7 +47,7 @@ timestamps <- ifelse(timestamps > 0, timestamps, NA)
 timestamps <- ifelse(timestamps == min(timestamps, na.rm = T), timestamps, NA)
 
 minimum <- grep(pattern = min(timestamps, na.rm = T), timestamps)
-loadfile <- paste0("U:/R/HB/",files[minimum])
+loadfile <- paste0(dir,"/",files[minimum])
 loadfile
 load(file = loadfile)
 #gravity_notes, IBU, df, BeerName, BeerType, hopgraph, maltgraph, Attgraph, img, Hops, Malts
@@ -64,9 +66,13 @@ returnlist[[5]][1]
 
 ```{r, echo = FALSE, results = "asis"}
 #Hops
-hoplist <- unlist(returnlist[10])
-hopweights <- unlist(returnlist[[15]])
-percentages <- list(unlist(lapply(hopweights, function(x) paste0(round(x/sum(hopweights)*100,2),"%"))))
+
+hopdf <- returnlist[[15]]
+
+hoplist <- hopdf[[1]]
+hopweights <- hopdf[[2]]
+percentages <- list(unlist(lapply(hopweights, function(x) round(x/sum(hopweights)*100,2))))
+
 
 #Malts
 maltlist <- c(unlist(returnlist[[11]]$Malts))
@@ -83,10 +89,19 @@ malts <- c()
 for(hop in 1:length(hoplist)){
   if(hop == 1){
     hops <- hoplist[[1]]
+    newperc <- percentages[[1]][1]
   } else {
-    hops <- paste0(hops,", ", hoplist[[hop]])
+    if(hoplist[[hop]] == hoplist[[hop - 1]]){
+      hops <- hops
+      newperc[length(newperc)] <- newperc[length(newperc)] + percentages[[1]][hop]
+    } else {
+      hops <- paste0(hops,", ", hoplist[[hop]])
+      newperc[length(newperc) + 1] <- percentages[[1]][hop]
+    }
   }
 }
+
+
 
 for(malt in 1:length(maltlist)){
   if(malt == 1){
@@ -96,10 +111,11 @@ for(malt in 1:length(maltlist)){
   }
 }
 
-
+newperc <- c(unlist(lapply(newperc, function(x) paste0(round((x),0),"%"))))
+class(newperc)
 
 df <- data.frame(c("Hops","Yeast"), c(hops, yeastname))
-df$Description <- c(percentages,paste("Attentuation:",yeastatt,", Temp. range:",yeasttemp))
+df$Description <- c(list(newperc),paste("Attentuation:",yeastatt,", Temp. range:",yeasttemp))
 colnames(df) <- c("Ingredients","Name","Description")
 kable(df, format = "markdown")
 
@@ -144,8 +160,16 @@ Instruction <- c("Strike temp (c):", "Target mash temp (c):", "Strike vol (L):",
 Value <- c(returnlist[[14]][4], returnlist[[14]][6],returnlist[[14]][1], returnlist[[14]][2], returnlist[[14]][5])
 
 
+boiltimes <- hopdf[[3]]
+
 df <- data.frame(Instruction, Value)
 kable(df, format = "markdown")
+
+hopdf <- data.frame(hoplist, hopweights, boiltimes)
+hopdf <- hopdf[order(-boiltimes),]
+colnames(hopdf) <- c("Name","Grams","Minute_mark")
+
+kable(hopdf, format = "markdown")
 ```
 
 

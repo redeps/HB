@@ -1,7 +1,7 @@
 ######################################
 #### Creating NEW Searchable Hop index
 #####################################
-setwd('S:\\Peder\\training\\Python')
+#setwd('S:\\Peder\\training\\Python')
 getwd()
 mydata <- data.frame(read.csv("Hops directory.csv",sep=",",header=TRUE))
 

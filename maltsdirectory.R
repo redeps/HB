@@ -1,6 +1,6 @@
 ###Creating searchable malt directory
 
-setwd('S:\\Peder\\training\\Python')
+#setwd('S:\\Peder\\training\\Python')
 mydata2 <- data.frame(read.csv("Malts.csv",sep=",",header=FALSE),stringsAsFactors=FALSE)
 mydata2[] <- lapply(mydata2, as.character)
 names <-mydata2[23,]

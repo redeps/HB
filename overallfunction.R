@@ -43,7 +43,9 @@ RunFGCalc <- function(Malts, Grams_Grain, Grainprops, Target_Batch_L, Hops, Hopw
   Malts <- gravity_notes_step[[2]]
   OGBE<-as.numeric(gravity_notes[1])
   recipeNotes <- amountfunc(Target_Batch_L, Grams_Grain, Boil_time_Hr, Target_Mash_Temp, Grain_Temp)
-  IBU<-IBUCalc(Hops, Hopweights, Target_Batch_L, OGBE, Boilmin)
+  hopdf<-IBUCalc(Hops, Hopweights, Target_Batch_L, OGBE, Boilmin)
+
+  IBU <- sum(hopdf$IBU)
 #  Malts <- gravity_notes[7]
   NAMES<-c("OG","FG","OG/gal","SRM","MCU","ABV","IBU")
   Beer_info<-c(gravity_notes,IBU)
@@ -115,8 +117,8 @@ RunFGCalc <- function(Malts, Grams_Grain, Grainprops, Target_Batch_L, Hops, Hopw
     )+
     geom_text(aes(4,(df[7,]$result+10), label = "Colour = SRM", size = 30, colour = clr))
   Attgraph
-  returnlist <- list(gravity_notes, IBU, df, BeerName, BeerType, hopgraph, maltgraph, Attgraph, img, Hops, Malts, yeasts, Grainprops, recipeNotes, Hopweights)
-  filename <- paste0("U:/R/HB/", BeerName, gsub(" ","", format(Sys.time(), "%d %m %y %H %M")),".Rdata")
+  returnlist <- list(gravity_notes, IBU, df, BeerName, BeerType, hopgraph, maltgraph, Attgraph, img, Hops, Malts, yeasts, Grainprops, recipeNotes, list(hopdf$Hops,hopdf$Hopweights,hopdf$Boilmin))
+  filename <- paste0(getwd(),"/", BeerName, gsub(" ","", format(Sys.time(), "%d %m %y %H %M")),".Rdata")
   save(returnlist, file = filename)
   return(filename)
 }
