@@ -22,8 +22,8 @@ plot_theme <- function() {
     panel.grid = element_line(colour = "#f0f0f0"),
     axis.ticks.margin = "none",
     axis.line=element_blank(),
-    axis.title.x=element_blank(),
-    axis.title.y=element_blank(),
+    #axis.title.x=element_blank(),
+    #axis.title.y=element_blank(),
     legend.position="none"
   )
 }
@@ -87,14 +87,17 @@ RunFGCalc <- function(Malts, Grams_Grain, Grainprops, Target_Batch_L, Hops, Hopw
     geom_text(data=HopDirectory[4,], aes(x=reorder(Name,-Alpha.Acid.High), 10*Humuleneplot),label="Humulene",hjust=0,vjust=2, size=3, colour="#8f00f2")+
     geom_text(data=HopDirectory[4,], aes(x=reorder(Name,-Alpha.Acid.High), 10*MyrcenePER100G),label="Myrcene",hjust=0,vjust=3, size=3, colour="#8f00f2")+
     plot_theme()
+
   MaltDirectory$group<-groupmalts(Malts)
+
   maltgraph<- ggplot(subset(MaltDirectory, MaltDirectory$G>1020), aes(x=G, y= L, colour=as.character(group), size=as.character(group)))+
     geom_jitter()+
     scale_colour_manual(values=c("#00DCF2","#00F28F"))+
     scale_size_manual(values=c(2,1))+
-    geom_text(aes(label=ifelse(group==1,as.character(Malt),'')),hjust=0, size = 3, colour="#8f00f2")+
+    geom_text(aes(label=ifelse(group==1,as.character(Malt),'')),hjust=0, colour="#8f00f2")+
     theme(legend.position="none")+
     plot_theme()
+
   Attgraph <- ggplot(df[c(3:7),], aes(y=result, fill="skip"))+
     geom_point(aes(x=info2, size = 30, colour = clr), data=df[c(3:7),])+
 #    coord_polar()+

@@ -11,6 +11,7 @@ This is a description of your beer and a list of details for brewing.
 > Using the following file:
 ```{r, echo = FALSE}
 suppressWarnings(library(ggplot2))
+suppressMessages(suppressWarnings(library(plotly)))
 stjerne <- data.frame(read.csv(file = "U:/R/HB/XY.csv"))
 stjerne$Group <- factor(6)
 south <- data.frame(read.csv(file = "U:/R/HB/XYsouth.csv"))
@@ -150,12 +151,18 @@ kable(df, format = "markdown")
 
 ## Charts:
 
-```{r, echo=FALSE, fig.width=10, fig.height=3, warning = FALSE, fig.align = "center"}
-hopchart <- (returnlist[6])
+```{r, echo=FALSE, fig.width=10, fig.height=10, warning = FALSE, fig.align = "center"}
+
+hopchart <- (returnlist[[6]])
 suppressWarnings(hopchart)
-maltgraph <- (returnlist[7])
-suppressWarnings(maltgraph)
-Attgraph <- (returnlist[8])
+```
+
+```{r, echo=FALSE, fig.width=10, fig.height=5, warning = FALSE, fig.align = "center"}
+#library(plotly)
+maltgraph <- (returnlist[[7]])
+# vs Gravity
+ggplotly(maltgraph)
+Attgraph <- (returnlist[[8]])
 suppressWarnings(Attgraph)
 ```
 

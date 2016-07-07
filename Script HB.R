@@ -17,6 +17,7 @@ library(useful)
 #fonts() # Print list of all fonts
 #install.packages("jpeg")
 library(jpeg)
+library(plotly)
 
 ###################ENTER VALUES FOR FINAL COMPUTATION###############################
 
@@ -35,7 +36,6 @@ Boil_time_Hr <- 1
 Target_Mash_Temp<-64
 Grain_Temp<-NULL
 #percentage
-yeast_attenuation<-NULL
 brewhouse_efficiency=NULL
 BeerName=NULL
 BeerType=NULL
@@ -93,9 +93,10 @@ source("U:/R/HB/overallfunction.R")
 
 RunFGCalc(Malts, 4350, Grainprops, 19, Hops, Hopweights, Boilmin, 1, 64, yeast, 22,70)
 
-load(file = "U:/R/HB/0606161339.Rdata")
+load(file = "U:/R/HB/0706161331.Rdata")
 suppressWarnings(returnlist[15])
-suppressWarnings(returnlist[7])
+ggplotly(returnlist[[6]], barmode = 'stacked')
+(returnlist[[7]])
 suppressWarnings(returnlist[8])
 
 #list <- as.list(RunFGCalc(Malts, 4000, Grainprops, 11, Hops, Hopweights, Boilmin, 1, 64))
@@ -167,9 +168,6 @@ ggplot(data = south, aes(Xsouth,Ysouth, color = Group))+
     #text
     "#f20063"
   ))
-
-
-
 
 
 
