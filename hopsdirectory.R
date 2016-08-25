@@ -123,21 +123,21 @@ grouphops <- function(list){
 
 
 
-HopDirectory$group<-grouphops(Hops)
-p<-ggplot(HopDirectory, aes(x=reorder(Name,-Alpha.Acid.High), fill=as.factor(group) ))+
-  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),(0-Alpha.Acid.High)), stat="identity",alpha=.5)+
-  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),(0-Alpha.Acids)), stat="identity", alpha=.35)+
-  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),(0-cohumulone)), stat="identity")+
-  #acids per 1000g
-  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),10*Farneseneplot), stat="identity",alpha=.25)+
-  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),10*Caryophylleneplot), stat="identity",alpha=.5)+
-  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),10*Humuleneplot), stat="identity",alpha=.75)+
-  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),10*MyrcenePER100G), stat="identity")+
-  geom_hline(aes(yintercept=0, colour="#A9A9A9"))+
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
-  scale_x_discrete(name="Hop Name")+
-  scale_y_continuous(name="Mls/100 g dried hops//Alpha Acids")+
-  scale_fill_manual(values=c("#00B259","#A9A9A9"))
+#HopDirectory$group<-grouphops(Hops)
+#p<-ggplot(HopDirectory, aes(x=reorder(Name,-Alpha.Acid.High), fill=as.factor(group) ))+
+#  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),(0-Alpha.Acid.High)), stat="identity",alpha=.5)+
+#  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),(0-Alpha.Acids)), stat="identity", alpha=.35)+
+#  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),(0-cohumulone)), stat="identity")+
+#  #acids per 1000g
+#  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),10*Farneseneplot), stat="identity",alpha=.25)+
+#  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),10*Caryophylleneplot), stat="identity",alpha=.5)+
+#  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),10*Humuleneplot), stat="identity",alpha=.75)+
+#  geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),10*MyrcenePER100G), stat="identity")+
+#  geom_hline(aes(yintercept=0, colour="#A9A9A9"))+
+#  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+#  scale_x_discrete(name="Hop Name")+
+#  scale_y_continuous(name="Mls/100 g dried hops//Alpha Acids")+
+#  scale_fill_manual(values=c("#00B259","#A9A9A9"))
 
 #summary(HopDirectory$approxalpha)
 #lowaa<-subset(HopDirectory, approxalpha >7 & approxalpha<10)

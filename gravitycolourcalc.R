@@ -38,6 +38,17 @@ getMalts <- function(Malt,length){
   return(Malt)
 }
 
+getMaltsShiny <- function(Malts){
+  maltlist <- c()
+  for(malt in 1:length(Malts)){
+    if(malt == 1){
+      Malt <- searchmalts(Malts[malt])
+    } else
+      Malt <- rbind(Malt, searchmalts(Malts[malt]))
+  }
+  return(Malt)
+}
+
 checkDec <- function(brewhouse_efficiency){
   if(brewhouse_efficiency != "" & brewhouse_efficiency >= 1){
     brewhouse_efficiency <- readline(prompt = "Enter brewhouse_efficiency as a decimal (needs to be 1 or lower): ")

@@ -29,6 +29,12 @@ searchYeasts <- function(name){
   return(returnitem)
 }
 
+searchYeastsSimple <- function(name){
+  i <-grep(name, yeasts$Name,ignore.case=TRUE)
+    returnitem <- yeasts[i,]
+  return(returnitem)
+}
+
 searchLab <- function(name, df){
   i <-grep(name, df$Lab,ignore.case=TRUE)
   return(df[i,])
