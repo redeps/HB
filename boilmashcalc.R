@@ -3,6 +3,8 @@
 #mydata[2]<-gsub("[^[:alnum:][:blank:]]", "", mydata[2])
 
 amountfunc <- function(Target_Batch_L, Grams_Grain, Boil_time_Hr, Target_Mash_Temp, Grain_Temp=NULL){
+  
+  
   #Grain_Temp auto set to 22C
   #Test to see if this works
   if(is.null(Grain_Temp)){
@@ -22,10 +24,10 @@ amountfunc <- function(Target_Batch_L, Grams_Grain, Boil_time_Hr, Target_Mash_Te
   Water_Loss_Boil <- as.numeric(Target_Batch_L*(Perc_Boiloff_HR*Boil_time_Hr)) + (Target_Batch_L*Wort_Shrinkage) + Trub_loss + Equipment_Loss
   Pre_Sparge_Volume <- as.numeric(Strike_Volume - Water_Loss_Mash)
   Sparge_Volume <- round(as.numeric(Target_Batch_L - Pre_Sparge_Volume),3)
-  print(paste0("Strike volume (L): ", Strike_Volume))
-  print(paste0("Sparge volume (L): ", Sparge_Volume))
+  #print(paste0("Strike volume (L): ", Strike_Volume))
+  #print(paste0("Sparge volume (L): ", Sparge_Volume))
   Total_Water <- Strike_Volume + Sparge_Volume
-  print(paste0("Total volume (L): ", Total_Water))
+  #print(paste0("Total volume (L): ", Total_Water))
   Strike_Tempfunc <-function(Target_Mash_Temp,Grain_Temp){
     imperial_mash_thickness <- (1.25/1)
     A <- (0.2/as.numeric(imperial_mash_thickness))
@@ -37,7 +39,7 @@ amountfunc <- function(Target_Batch_L, Grams_Grain, Boil_time_Hr, Target_Mash_Te
     return(Strike_Temp)
   }
   Strike_Temp <-Strike_Tempfunc(Target_Mash_Temp,Grain_Temp)
-  print(paste0("Strike temp (C): ", Strike_Temp))
+  #print(paste0("Strike temp (C): ", Strike_Temp))
   recipe_notes<-c(Strike_Volume, Sparge_Volume, Total_Water, Strike_Temp, Target_Batch_L, Target_Mash_Temp)
   return(recipe_notes)
 }

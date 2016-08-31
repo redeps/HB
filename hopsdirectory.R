@@ -3,10 +3,10 @@
 #####################################
 #setwd('S:\\Peder\\training\\Python')
 getwd()
-mydata <- data.frame(read.csv("Hops directory.csv",sep=",",header=TRUE))
+mydata <- data.frame(read.csv("Hops directory.csv",sep=",",header=TRUE, stringsAsFactors = FALSE))
 
 mydata$Name <- ifelse(mydata$Name == 'DORADO','ELDORADO',as.character(mydata$Name))
-mydata[14,1]<-'COLUMBUS+TOMAHAWK+ZEUS'
+mydata[14,1]<-'COLUMBUS TOMAHAWK ZEUS'
 mydata[41,1]<- 'SUPER GALENA'
 mydata$approxalpha= (as.numeric(mydata$Alpha.Acids)+as.numeric(mydata$Alpha.Acid.High))/2
 mydata$approxbeta= (as.numeric(mydata$Beta.Acids)+as.numeric(mydata$Beta.Acid.High))/2

@@ -1,5 +1,10 @@
 
-yeasts <- data.frame(read.csv(file = "U:/R/HB/Yeasts.csv"))
+yeasts <- data.frame(read.csv(file = "U:/R/HB/Yeasts.csv"), stringsAsFactors = FALSE)
+for(col in 1:ncol(yeasts)){
+  if(is.factor(yeasts[[col]])==T){
+    yeasts[[col]] <- as.character(yeasts[[col]])
+  }
+}
 #gsub("^[0-9]{2}","H",yeasts$Attentuation)
 #gsub("^[0-9]{1}","H",yeasts$Attentuation)
 #gsub("[^^.(.)]","HH",as.character(yeasts$Attentuation[[1]]))
@@ -10,8 +15,8 @@ yeasts <- data.frame(read.csv(file = "U:/R/HB/Yeasts.csv"))
 #yeasts$avgatt <- (yeasts$minatt+yeasts$maxatt) / 2
 #yeasts$Tolerance <- as.integer(gsub("%", "", yeasts$Tolerance))
 #yeasts$Temperature
-#yeasts$mintemp <- as.integer(gsub("°.{1,}","",yeasts$Temperature))
-#yeasts$maxtemp <- as.integer(gsub(" ","",gsub("°F","",gsub("\\d{1,}.°F.-","", yeasts$Temperature))))
+#yeasts$mintemp <- as.integer(gsub("?.{1,}","",yeasts$Temperature))
+#yeasts$maxtemp <- as.integer(gsub(" ","",gsub("?F","",gsub("\\d{1,}.?F.-","", yeasts$Temperature))))
 #write.csv(yeasts, file = "S:/peder/training/R/HB/Yeasts.csv")
 
 searchYeasts <- function(name){

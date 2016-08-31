@@ -86,21 +86,21 @@ searchmalts <- function(name){
   return(MaltDirectory[i,])
 }
 #eg
-searchmalts("Cara")
+#searchmalts("Cara")
 
 searchflav <- function(flavour){
   i <-grep(flavour, MaltDirectory$Decription,ignore.case=TRUE)
   return(MaltDirectory[i, ])
 }
 #eg
-searchflav("coffee")
+#searchflav("coffee")
 
 searchtype <- function(type){
   i <-grep(type, MaltDirectory$Decription,ignore.case=TRUE)
   return(MaltDirectory$Malt[i])
 }
 #eg
-searchtype("stout")
+#searchtype("stout")
 
 MaltDirectory$group <- 2
 

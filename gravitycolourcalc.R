@@ -60,6 +60,7 @@ checkDec <- function(brewhouse_efficiency){
 
 
 FGCalc <- function(Malts,Grams_Grain, Grainprops,Target_Batch_L, yeast, brewhouse_efficiency=NULL){
+  print(Malts)
   if(sum(Grainprops) != 100){
     Grainprops <- getGrainprops(Malts)
   }
@@ -68,6 +69,7 @@ FGCalc <- function(Malts,Grams_Grain, Grainprops,Target_Batch_L, yeast, brewhous
   #Test to see if the two following work:
   yeastinfo <- searchYeasts(yeast)
   yeast_attenuation <- ifelse(nrow(yeastinfo) == 1, yeastinfo$avgatt, NULL)
+  print(yeast_attenuation)
   if(is.null(yeast_attenuation)){
     yeast_attenuation <- readline(prompt = "Enter yeast attenuation (as percentage) to see expected FG, or hit enter to skip this step: ")
     yeast_attenuation<- ifelse(!is.null(yeast_attenuation), as.numeric(yeast_attenuation), NA )
@@ -142,3 +144,75 @@ FGCalc <- function(Malts,Grams_Grain, Grainprops,Target_Batch_L, yeast, brewhous
 
 
 #### End Creating Gravity and colour calculator
+
+
+
+
+ShinyFGCalc <- function(Malts, Grainprops,Target_Batch_L, yeast, brewhouse_efficiency=NULL){
+  Target_Batch_gal <- ltogal(Target_Batch_L)
+  #Test to see if the two following work:
+  yeast_attenuation <- ifelse(nrow(yeast) == 1, as.numeric(yeast$avgatt), NULL)
+  
+  LbGrain<-sapply(Grainprops, function(x) gtolb(x))
+  
+  Malt <- cbind(Malts, LbGrain)
+  Malt$potcont<-(as.numeric(Malt$G))-1000
+  #This corresponds to the contribution that a pound of grain or extract will add if dissolved in a gallon of water. The maximum potential is approximately 1.046 which would be a pound of pure sugar in a gallon of water.
+  #"potential" contribution
+  Malt$colourcont <- ((as.numeric(Malt$L))*Malt$LbGrain)/Target_Batch_gal
+  
+  MCU<- round(sum(Malt$colourcont))
+  SRM<- round(1.4922 * (MCU **0.6859))
+  Malt$totpot <- ((Malt$LbGrain*Malt$potcont)*brewhouse_efficiency)
+  
+  OG100gal <- round(sum((Malt$LbGrain*Malt$potcont))/Target_Batch_gal)
+  OG100 <- round(sum((Malt$LbGrain*Malt$potcont))/Target_Batch_gal)+1000
+  OGBEgal <- round((sum(Malt$totpot))/Target_Batch_gal)
+  OGBE <- (round((sum(Malt$totpot))/Target_Batch_gal)+1000)
+  if(!is.null(yeast_attenuation)){
+    EFG <- round(OGBEgal*(1-(yeast_attenuation/100))+1000)
+    EABV <- ((OGBE - EFG)*131)/1000
+    gravity_notes<-c(OGBE,OGBEgal,SRM,MCU,EFG,EABV)
+  }
+  if(is.null(yeast_attenuation)){
+    gravity_notes<-c(OGBE,OGBEgal,SRM,MCU,"","")
+  }
+  gravity_notes <- list(gravity_notes,Malt, yeast)
+  return(gravity_notes)
+}
+
+leftovers <- function(Malts,Grams_Grain, Grainprops,Target_Batch_L, yeast, brewhouse_efficiency=NULL){
+  Malt$potcont<-(Malt$G)-1000
+    length<-length(Malt$Malt)
+    #Test to see if the following works:
+    G<-Malt$G
+    #print(Malt)
+    L<-Malt$L 
+    #This corresponds to the contribution that a pound of grain or extract will add if dissolved in a gallon of water. The maximum potential is approximately 1.046 which would be a pound of pure sugar in a gallon of water.
+    #"potential" contribution
+
+  MCU<- round(sum(Weightframe$colourcont))
+  SRM<- round(1.4922 * (MCU **0.6859))
+  print(paste0("Colour:: Expected SRM: ", SRM, ", Expected MCU: ", MCU))
+  Weightframe$totpot<-((Weightframe$Grainwgt*Weightframe$potcont)*brewhouse_efficiency)
+  OG100gal <- round(sum((Weightframe$Grainwgt*Weightframe$potcont))/Target_Batch_gal)
+  OG100 <- round(sum((Weightframe$Grainwgt*Weightframe$potcont))/Target_Batch_gal)+1000
+  OGBEgal <- round((sum(Weightframe$totpot))/Target_Batch_gal)
+  OGBE <- (round((sum(Weightframe$totpot))/Target_Batch_gal)+1000)
+  #print(paste0("OG at 100% efficiency: ", OG100gal, " per gallon"))
+  #print(paste0("OG at 100% efficiency: ", OG100))
+  print(paste0("OG at brewhouse efficiency: ", OGBEgal," per gallon"))
+  print(paste0("OG at brewhouse efficiency: ",OGBE))
+  if(!is.null(yeast_attenuation)){
+    EFG <- round(OGBEgal*(1-(yeast_attenuation/100))+1000)
+    EABV <- ((OGBE - EFG)*131)/1000
+    print(paste0("Expected FG: ", EFG))
+    print(paste0("Expected ABV: ", EABV))
+    gravity_notes<-c(OGBE,OGBEgal,SRM,MCU,EFG,EABV)
+  }
+  if(is.null(yeast_attenuation)){
+    gravity_notes<-c(OGBE,OGBEgal,SRM,MCU,"","")
+  }
+  gravity_notes <- list(gravity_notes,Weightframe, yeastinfo)
+  return(gravity_notes)
+}
