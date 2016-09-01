@@ -1,29 +1,27 @@
 ##install.packages("shinydashboard")
 ##install.packages("shinytheme")
-#library(shiny)
-#library(shinydashboard)
-#library(shinytheme)
-#library(ggplot2)
-#library(stringr)
-#library(plyr)
-#library(dplyr)
-#library(tidyr)
-#library(data.table)
-#library(reshape2)
-#library(shiny)
 ###install.packages("directlabels")
-#library(directlabels)
-#library(grid)
 ###install.packages("extrafont")
-#library(extrafont)
 ##install.packages("useful")
-#library(useful)
 ##font_import() # Import all fonts
 ##fonts() # Print list of all fonts
 ##install.packages("jpeg")
+library(shiny) 
+library(shinydashboard)
+library(DT)
+library(dplyr)
+library(tidyr)
+#library(ggplot2)
+#library(stringr)
+#library(plyr)
+#library(reshape2)
+#library(directlabels)
+#library(grid)
+#library(extrafont)
+#library(useful)
 #library(jpeg)
 #library(plotly)
-library(DT)
+#library(data.table)
 
 
 setwd("S:/Peder/training/R/HB")
@@ -33,6 +31,8 @@ source(paste0(getwd(),"/hopsdirectory.R"))
 source(paste0(getwd(),"/yeastdirectory.R"))
 source(paste0(getwd(),"/boilmashcalc.R"))
 source(paste0(getwd(),"/gravitycolourcalc.R"))
+source(paste0(getwd(),"/ibucalc.R"))
+source(paste0(getwd(),"/graphfunc.R"))
 
 getMaltsShiny <- function(Malts){
   for(malt in 1:length(Malts)){
@@ -129,11 +129,15 @@ ui <- dashboardPage(
   dashboardSidebar(sidebarSearchForm(textId = "searchText", buttonId = "searchButton",
                                      label = "Search..."),
                    sidebarMenu(
+                     textInput("BName",label = h4("Brew name:"), value = ""),
+                     textInput("BType",label = h4("Brew type:"), value = ""),
                      menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
                      menuItem("Ingredients", tabName = "Ingredients", icon = icon("th"),
                               badgeLabel = "new", badgeColor = "green"),
                      menuItem("Information", tabName = "Information", icon = icon("th"),
                               badgeLabel = "new", badgeColor = "green"),
+                     actionButton("compute", "Calculate recipe", width = "100%", icon("paper-plane"), 
+                                  style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
                      menuItem("Malts", icon = icon("grain", lib = "glyphicon"),
                               href = "https://www.beeradvocate.com/beer/101/malts/",
                               badgeLabel = "opens new page", badgeColor = "blue"),
@@ -142,15 +146,14 @@ ui <- dashboardPage(
                               badgeLabel = "opens new page", badgeColor = "blue"),
                      menuItem("Yeasts", icon = icon("flask"),
                               href = "https://www.beeradvocate.com/beer/101/yeast/",
-                              badgeLabel = "opens new page", badgeColor = "blue"),
-                     actionButton("compute", "Calculate recipe", width = "100%", icon("paper-plane"), 
-                                  style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
+                              badgeLabel = "opens new page", badgeColor = "blue")
+                     
                    )
                    
   ),
   
   dashboardBody(
-    tabItems(
+    tabItems(id = "Body",
       # First tab content
       tabItem(tabName = "dashboard",
               fluidRow(
@@ -158,14 +161,19 @@ ui <- dashboardPage(
                   title = "Enter ingredients", height = "640px",
                   # The id lets us use input$tabset1 on the server to find the current tab
                   id = "tabset1",
-                  tabPanel("Tab1",textInput("Malts",label = h3("Malts:"), value = ""),
+                  tabPanel("Tab1",
+                           em("Enter values separated by a comma. You must enter all values at once, ie 'Munich, chocolate, pilsner'"),
+                           textInput("Malts",label = h3("Malts:"), value = ""),
                            actionButton("do", "Show Choices"),
                            textInput("Hops",label = h3("Hops:"), value = ""),
                            actionButton("do2", "Show Choices"),
                            textInput("Yeasts",label = h3("Yeasts:"), value = ""),
                            actionButton("do3", "Show Choices")),
-                  textInput("Gramsgrain",label = h3("Grain (grams):"), value = ""),
-                  tabPanel("Tab2",plotOutput("plot1", height = 350))
+                  tabPanel("Tab2",
+                           plotOutput("batch5")
+                  ),
+                  tabPanel("Tab3",
+                           plotOutput("batch6"))
                 ),
                 
                 box(
@@ -211,17 +219,16 @@ ui <- dashboardPage(
                   title = "IngredientsTab",
                   id = "IngredientsTab",
                   tabPanel("Maltstable",
-                           #actionButton('newmalt', 'Add Malt'),
-                           dataTableOutput("maltreduced"),
-                           verbatimTextOutput('x2')
+                           actionButton("tbl1", "Load table"),
+                           DT::dataTableOutput("maltreduced")
                   ),
                   tabPanel("Hopstable",
-                           dataTableOutput("hopreduced"),
-                           verbatimTextOutput('Hopx2')
+                           actionButton("tbl2", "Load table"),
+                           DT::dataTableOutput("hopreduced")
                   ),
                   tabPanel("Yeasttable",
-                           dataTableOutput("yeastreduced"),
-                           verbatimTextOutput('Yeastx2')
+#                           actionButton("tbl3", "Load table"),
+                           DT::dataTableOutput("yeastreduced")
                   )
                 )
               )
@@ -235,11 +242,15 @@ ui <- dashboardPage(
                   title = "InformationTab",
                   id = "Information", height = "400px", width = 12,
                   tabPanel("Batch",
-                           dataTableOutput("batch"),
-                           textOutput("grams_grain")
+                           DT::dataTableOutput("batch")
+                           
                   ),
                   tabPanel("Colour and gravity",
-                           dataTableOutput("batch2")
+                           DT::dataTableOutput("batch2")
+                  ),
+                  tabPanel("Hops and bitterness",
+                           DT::dataTableOutput("batch3"),
+                           plotOutput("batch4")
                   )
                   #items
                 )
@@ -281,14 +292,18 @@ server <- function(input, output, session) {
         value = input[[paste0(id, i)]]
         if (is.null(value)) NA else value
       }))
-    }
+    } 
     
-    
+    observeEvent(input$compute, {
+      updateTabItems(session, "Body", selected = "Information")
+    })
 
 
- 
-  
-  #Maltbutton
+    ###########################
+    ########Maltbutton#########
+    ###########################
+    
+    
   searchmalt <- eventReactive(input$do, data.frame(
     rbind(
       getMaltsShiny({gsub(" ","",unlist(strsplit(input$Malts, ",")))}),
@@ -305,19 +320,22 @@ server <- function(input, output, session) {
       drawCallback = JS('function() {
                         Shiny.bindAll(this.api().table().node()); } ')
       )
-      )
+  )
+  
+
   # print the values of inputs
   output$x2 = renderPrint({
-    shinyValue('v2_', nrow(newMaltoptions()))
+    input$Maltoptions_rows_selected
   })
   
-  
+ 
   
   observeEvent(input$do, {
     updateTabsetPanel(session, "tabset2", selected = "Malts")
   })
   
-  selections <- eventReactive(input$Maltoptions_rows_selected, 
+
+  selections <- eventReactive(input$tbl1, 
     if(nrow(searchmalt()) %in% input$Maltoptions_rows_selected){
       input$Maltoptions_rows_selected[-length(input$Maltoptions_rows_selected)]
     }else {
@@ -325,20 +343,22 @@ server <- function(input, output, session) {
     }
   )
   
-  extraRow <- eventReactive(input$Maltoptions_rows_selected,
+  extraRow <- eventReactive(input$tbl1,
     if(nrow(searchmalt()) %in% input$Maltoptions_rows_selected){
       shinyValue('v1_', ncol(searchmalt()))
     }else{
       NULL
     })
 
-  Maltoptionsred <- eventReactive(input$Maltoptions_rows_selected, data.frame(
+  Maltoptionsred <- eventReactive(input$tbl1, data.frame(
     rbind(
       searchmalt()[selections(),],
       extraRow()))
     )
   
-  newMaltoptions <- eventReactive(input$Maltoptions_rows_selected, data.frame(
+
+  
+  newMaltoptions <- eventReactive(input$tbl1, data.frame(
     cbind(Maltoptionsred(),
           shinyInput(numericInput, nrow(Maltoptionsred()), 'v2_', value = "", width = "100px"))
   ))
@@ -350,23 +370,31 @@ server <- function(input, output, session) {
                            Shiny.unbindAll(this.api().table().node()); }'),
       drawCallback = JS('function() {
                         Shiny.bindAll(this.api().table().node()); } ')
-      ),
+      )
+    ,
     colnames = c(colnames(Maltoptionsred()), "Amount (g)")
     
   )
   
-
+  ###########################
+  ########Hopbutton#########
+  ###########################
   
-  #Hopbutton
-  searchhop <- eventReactive(input$do2, data.frame(
-    rbind(
-      DTfactortochar(gethopsShiny({gsub(" ","",unlist(strsplit(input$Hops, ",")))})),
+  
+  presearchhop <- eventReactive(input$do2, data.frame(
+          rbind(
+      gethopsShiny({gsub(" ","",unlist(strsplit(input$Hops, ",")))}),
       shinyInput(textInput, ncol(gethopsShiny({gsub(" ","",unlist(strsplit(input$Hops, ",")))})), 'Hopv1_', value = "Add hop", width = "100px")
-    )[c(1,23:25,28,33:35)]
+    )[c(1,6,7,24,25,26,33,37,38,39)]
   )
   )
   
-  
+  searchhop <- eventReactive(input$do2, data.frame(
+    cbind(
+      shinyInput(textInput, nrow(presearchhop()), 'Hopadd_', value = "", width = "40px"),
+      presearchhop()
+  )
+  ))
   
   # render the table containing shiny inputs
   output$Hopoptions = DT::renderDataTable(
@@ -375,18 +403,22 @@ server <- function(input, output, session) {
                            Shiny.unbindAll(this.api().table().node()); }'),
       drawCallback = JS('function() {
                         Shiny.bindAll(this.api().table().node()); } ')
+      ),
+    colnames = c("Num.Of.Additions",colnames(presearchhop()))
       )
-      )
+  
+
   # print the values of inputs
   output$x2hop = renderPrint({
-    list(shinyValue('Hopv2_', ncol(searchhop())), HopextraRow())
+    shinyValue('Hopv2_', sum(as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected])))
   })
   
   observeEvent(input$do2, {
     updateTabsetPanel(session, "tabset2", selected = "Hops")
   })
   
-  hopselections <- eventReactive(input$Hopoptions_rows_selected, 
+  
+  hopselections <- eventReactive(input$tbl2, 
                                  if(nrow(searchhop()) %in% input$Hopoptions_rows_selected){
                                    input$Hopoptions_rows_selected[-length(input$Hopoptions_rows_selected)]
                                  }else {
@@ -394,48 +426,64 @@ server <- function(input, output, session) {
                                  }
   )
   
-  HopextraRow <- eventReactive(input$Hopoptions_rows_selected,
+  HopextraRow <- eventReactive(input$tbl2,
                                if(nrow(searchhop()) %in% input$Hopoptions_rows_selected){
                                  shinyValue('Hopv1_', ncol(searchhop()))
                                }else{
                                  NULL
                                })
   
-  Hopoptionsred <- eventReactive(input$Hopoptions_rows_selected, data.frame(
+  Hopoptionsred <- eventReactive(input$tbl2, data.frame(
     rbind(
       searchhop()[hopselections(),],
-      HopextraRow()))
+      HopextraRow())
+    )
+    
   )
   
-#  shinyInput = function(FUN, len, id, ...) {
-#    inputs = character(len)
-#    for (i in seq_len(len)) {
-#      inputs[i] = as.character(FUN(paste0(id, i), label = NULL, ...))
-#    }
-#    inputs
-#  }
-  
-  newHopoptions <- eventReactive(input$Hopoptions_rows_selected, data.frame(
-    cbind(shinyInput(actionButton, nrow(Hopoptionsred()), 'button_', onclick = 'Shiny.onInputChange(\"select_button\", this.id)', width = "50px"),
-          shinyInput(numericInput, nrow(Hopoptionsred()), 'Hopv2_', value = "", width = "100px"),
-          Hopoptionsred()
-          )
+
+  #Start here
+  Hopoptionsexp <- eventReactive(input$tbl2, data.frame(
+    Hopoptionsred()[-1][rep(1:nrow(Hopoptionsred()), as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected])),]
   ))
   
+
+  newHopoptions <- eventReactive(input$tbl2, reactiveValues(data = data.frame(
+    cbind(
+      #https://github.com/rstudio/DT/issues/178
+      shinyInput(numericInput, nrow(Hopoptionsexp()), 'Hopv2_', value = 0, width = "100px"),
+      shinyInput(numericInput, nrow(Hopoptionsexp()), 'Time_', value = 60, width = "100px"),
+      Hopoptionsexp()
+    )
+  )))
   
+
   output$hopreduced <- DT::renderDataTable(
-    newHopoptions(), server = FALSE, escape = FALSE, options = list(
+    newHopoptions()$data[order(newHopoptions()$data$Name),], server = FALSE, escape = FALSE, options = list(
       preDrawCallback = JS('function() {
                            Shiny.unbindAll(this.api().table().node()); }'),
       drawCallback = JS('function() {
                         Shiny.bindAll(this.api().table().node()); } ')
       ),
-    colnames = c("Amount (g)",colnames(Hopoptionsred()))
+    colnames = c("Amount (g)","Boil time (min)",colnames(Hopoptionsred()[-1]))
     
       )
   
 
-  #Yeastbutton
+#  testnumbers <- c("9 2" , "39 1")
+#  lapply(testnumbers, function(x) unlist(strsplit(x," "))[[2]])
+#  testrows <- HopDirectory[1:3,]
+#  for(rownumber in list(1,3)){
+#    for(manytime in lapply(testnumbers, function(x) unlist(strsplit(x," "))[[2]])){
+#      testrows <- rbind(testrows,testrows[rownumber,])
+#    }
+#    return(testrows[order(testrows$Name),])
+#  }
+  
+  ###########################
+  ########Yeastbutton#########
+  ###########################
+  
   searchyeast <- eventReactive(input$do3, data.frame(
     rbind(
       getyeastsShiny({gsub(" ","",unlist(strsplit(input$Yeasts, ",")))}),
@@ -507,12 +555,18 @@ server <- function(input, output, session) {
   #grain
   
   #Next step: finding grams_grain input
-  output$grams_grain <- eventReactive(input$compute, ShinyFGCalc(newMaltoptions(), shinyValue('v2_', nrow(newMaltoptions())), input$slider, newYeastoptions(), input$slider5))
+  output$grams_grain <- eventReactive(input$compute, ShinyIBUCalc(Hops = newHopoptions()$data[order(newHopoptions()$data$Name),], Hopweights = shinyValue('Hopv2_', sum(as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected]))), Target_Batch_L = input$slider, OGBE = gravityNotes()[[1]][1], Boilmin =  shinyValue('Time_', sum(as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected]))))
+                                      
+#ShinyIBUCalc(Hops = Hopoptionsred()[-1], Hopweights = shinyValue('Hopv2_', nrow(Hopoptionsred())), #Target_Batch_L = input$slider, OGBE = gravityNotes()[[1]][1], Boilmin =  shinyValue('Time_', nrow#(Hopoptionsred())))
+    
+    #Hops, Hopweights, Target_Batch_L, OGBE, Boilmin
+  )
   
   gravityNotes <- eventReactive(input$compute, ShinyFGCalc(newMaltoptions(), shinyValue('v2_', nrow(newMaltoptions())), input$slider, newYeastoptions(), input$slider5))
   
   recipeNotes <-  eventReactive(input$compute, amountfunc(Target_Batch_L = input$slider, Grams_Grain = sum(shinyValue('v2_', nrow(newMaltoptions()))), Boil_time_Hr = input$slider3, Target_Mash_Temp = input$slider4, Grain_Temp= input$slider5))
-
+  
+  hopnotes <-  eventReactive(input$compute, ShinyIBUCalc(Hops = newHopoptions()$data[order(newHopoptions()$data$Name),], Hopweights = shinyValue('Hopv2_', sum(as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected]))), Target_Batch_L = input$slider, OGBE = gravityNotes()[[1]][1], Boilmin =  shinyValue('Time_', sum(as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected])))))
   
   recipeNotesDT <- eventReactive(input$compute, data.frame(
     Info = c("Strike Volume","Sparge Volume","Total Water", "Strike temperature","Target batch (L)","Target Mash temperature"),
@@ -526,6 +580,12 @@ server <- function(input, output, session) {
     stringsAsFactors = FALSE
   ))
   
+  hopnotesDT <- eventReactive(input$compute, data.frame(
+    Info = c("IBUs"),
+    Value = round(sum(as.numeric(hopnotes()$IBU))),
+    stringsAsFactors = FALSE
+  ))
+  
    output$batch <- DT::renderDataTable(
     recipeNotesDT(), server = FALSE, escape = FALSE
   )
@@ -533,7 +593,22 @@ server <- function(input, output, session) {
    output$batch2 <- DT::renderDataTable(
      gravityNotesDT(), server = FALSE, escape = FALSE
    )
+   
+   output$batch3 <- DT::renderDataTable(
+     hopnotesDT(), server = FALSE, escape = FALSE
+   )
   
+   output$batch4 <- renderPlot(
+     crhopgr(newHopoptions()$data[order(newHopoptions()$data$Name),])
+   )
+   
+   output$batch5 <- renderPlot(
+     crmaltgr(newMaltoptions()$Malt)
+   )
+   
+   output$batch6 <- renderPlot(
+     crattgr(gravityNotesDT())
+   )
 
 
   #"slider", "Target batch (L):", 0

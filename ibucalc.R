@@ -34,6 +34,29 @@ divHoplist <- function(Hops, Hopweights){
 
 
 
+ShinyIBUCalc <- function(Hops, Hopweights, Target_Batch_L, OGBE, Boilmin){
+  Bigness_factor <- 1.65 * (0.000125**((OGBE/1000)-1))
+  Hops$Boil_time_factor <- 0
+  #http://realbeer.com/hops/research.html
+  #I'd suggest fiddling with 4.15 if necessary to match your system; only play with the other three if you like to muck around. I make no guarantees if you do.
+  for(row in 1:length(Boilmin)){
+          euler <-  (exp(1))
+          time <- (-0.04)*as.numeric(Boilmin[row])
+          expon <- euler^time
+          Hops[row,]$Boil_time_factor <- (1-expon)/4.15
+  }
+  Hops$Hopweights <- Hopweights
+  
+  Hops$decimal_alpha_acid_util <- Bigness_factor * Hops$Boil_time_factor
+
+  Hops$AAconc<-(as.numeric(Hops$Hopweights) * (as.numeric(Hops$approxalpha)/100) * 1000)/ Target_Batch_L
+
+  Hops$IBU <- (Hops$AAconc * as.numeric(Hops$decimal_alpha_acid_util))
+
+  return(Hops)
+}
+
+
 IBUCalc <- function(Hops, Hopweights, Target_Batch_L, OGBE, Boilmin){
   Newvalues <- divHoplist(Hops, Hopweights)
   Hops <- Newvalues[[1]]
@@ -74,7 +97,7 @@ IBUCalc <- function(Hops, Hopweights, Target_Batch_L, OGBE, Boilmin){
     Ca<-Hop$Caryophylleneplot[1]
     Hu<-Hop$Humuleneplot[1]
     My<-Hop$MyrcenePER100G[1]
-
+    
     Weightframe2$AA[hop]<-(AA)
     Hop2$Name[hop]<-Name
     Hop2$Alpha.Acid.High[hop]<-(AAH)
@@ -84,11 +107,11 @@ IBUCalc <- function(Hops, Hopweights, Target_Batch_L, OGBE, Boilmin){
     Hop2$Caryophylleneplot[hop]<- (Ca)
     Hop2$Humuleneplot[hop]<- (Hu)
     Hop2$MyrcenePER100G[hop]<- (My)
-
+    
   }
   Weightframe2$AAconc<-(as.numeric(Weightframe2$Hopweights) * (Weightframe2$AA/100) * 1000)/ Target_Batch_L
   Weightframe2$IBU <- (Weightframe2$AAconc * Weightframe2$decimal_alpha_acid_util)
-
+  
   print(paste0("Expected IBUs: ", round(sum(Weightframe2$IBU))))
   return(Weightframe2)
 }
