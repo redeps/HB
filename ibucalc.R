@@ -45,6 +45,7 @@ ShinyIBUCalc <- function(Hops, Hopweights, Target_Batch_L, OGBE, Boilmin){
           expon <- euler^time
           Hops[row,]$Boil_time_factor <- (1-expon)/4.15
   }
+  Hops$Boilmin <- Boilmin
   Hops$Hopweights <- Hopweights
   
   Hops$decimal_alpha_acid_util <- Bigness_factor * Hops$Boil_time_factor

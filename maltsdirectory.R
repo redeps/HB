@@ -68,6 +68,7 @@ df$Low<-as.numeric(as.character(df$Low))
 mydata2$G <- df$Low
 mydata2$Decription<-gsub("[^[:alnum:]///' ]", "", mydata2$Decription)
 #end fixing unknown character (degree)
+colnames(mydata2) <- gsub('Decription','Description',colnames(mydata2))
 
 
 MaltDirectory<-data.frame(subset(mydata2, !is.na(Type)))

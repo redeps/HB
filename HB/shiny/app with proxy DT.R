@@ -11,7 +11,8 @@ library(shinydashboard)
 library(DT)
 library(dplyr)
 library(tidyr)
-#library(ggplot2)
+library(knitr)
+library(ggplot2)
 #library(stringr)
 #library(plyr)
 #library(reshape2)
@@ -146,14 +147,18 @@ ui <- dashboardPage(
                               badgeLabel = "opens new page", badgeColor = "blue"),
                      menuItem("Yeasts", icon = icon("flask"),
                               href = "https://www.beeradvocate.com/beer/101/yeast/",
-                              badgeLabel = "opens new page", badgeColor = "blue")
+                              badgeLabel = "opens new page", badgeColor = "blue"),
+                     radioButtons('format', 'Document format', c('PDF', 'HTML', 'Word'),
+                                  inline = TRUE),
+                     downloadButton('report'),
+                     plotOutput("logo")
                      
                    )
                    
   ),
   
   dashboardBody(
-    tabItems(id = "Body",
+    tabItems(
       # First tab content
       tabItem(tabName = "dashboard",
               fluidRow(
@@ -242,7 +247,8 @@ ui <- dashboardPage(
                   title = "InformationTab",
                   id = "Information", height = "400px", width = 12,
                   tabPanel("Batch",
-                           DT::dataTableOutput("batch")
+                           DT::dataTableOutput("batch"),
+                           DT::dataTableOutput("batch7")
                            
                   ),
                   tabPanel("Colour and gravity",
@@ -294,9 +300,6 @@ server <- function(input, output, session) {
       }))
     } 
     
-    observeEvent(input$compute, {
-      updateTabItems(session, "Body", selected = "Information")
-    })
 
 
     ###########################
@@ -441,8 +444,6 @@ server <- function(input, output, session) {
     
   )
   
-
-  #Start here
   Hopoptionsexp <- eventReactive(input$tbl2, data.frame(
     Hopoptionsred()[-1][rep(1:nrow(Hopoptionsred()), as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected])),]
   ))
@@ -459,7 +460,7 @@ server <- function(input, output, session) {
   
 
   output$hopreduced <- DT::renderDataTable(
-    newHopoptions()$data[order(newHopoptions()$data$Name),], server = FALSE, escape = FALSE, options = list(
+    newHopoptions()$data, server = FALSE, escape = FALSE, options = list(
       preDrawCallback = JS('function() {
                            Shiny.unbindAll(this.api().table().node()); }'),
       drawCallback = JS('function() {
@@ -470,16 +471,6 @@ server <- function(input, output, session) {
       )
   
 
-#  testnumbers <- c("9 2" , "39 1")
-#  lapply(testnumbers, function(x) unlist(strsplit(x," "))[[2]])
-#  testrows <- HopDirectory[1:3,]
-#  for(rownumber in list(1,3)){
-#    for(manytime in lapply(testnumbers, function(x) unlist(strsplit(x," "))[[2]])){
-#      testrows <- rbind(testrows,testrows[rownumber,])
-#    }
-#    return(testrows[order(testrows$Name),])
-#  }
-  
   ###########################
   ########Yeastbutton#########
   ###########################
@@ -552,25 +543,24 @@ server <- function(input, output, session) {
 
   
   #information
-  #grain
-  
-  #Next step: finding grams_grain input
-  output$grams_grain <- eventReactive(input$compute, ShinyIBUCalc(Hops = newHopoptions()$data[order(newHopoptions()$data$Name),], Hopweights = shinyValue('Hopv2_', sum(as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected]))), Target_Batch_L = input$slider, OGBE = gravityNotes()[[1]][1], Boilmin =  shinyValue('Time_', sum(as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected]))))
-                                      
-#ShinyIBUCalc(Hops = Hopoptionsred()[-1], Hopweights = shinyValue('Hopv2_', nrow(Hopoptionsred())), #Target_Batch_L = input$slider, OGBE = gravityNotes()[[1]][1], Boilmin =  shinyValue('Time_', nrow#(Hopoptionsred())))
-    
-    #Hops, Hopweights, Target_Batch_L, OGBE, Boilmin
-  )
   
   gravityNotes <- eventReactive(input$compute, ShinyFGCalc(newMaltoptions(), shinyValue('v2_', nrow(newMaltoptions())), input$slider, newYeastoptions(), input$slider5))
   
   recipeNotes <-  eventReactive(input$compute, amountfunc(Target_Batch_L = input$slider, Grams_Grain = sum(shinyValue('v2_', nrow(newMaltoptions()))), Boil_time_Hr = input$slider3, Target_Mash_Temp = input$slider4, Grain_Temp= input$slider5))
   
-  hopnotes <-  eventReactive(input$compute, ShinyIBUCalc(Hops = newHopoptions()$data[order(newHopoptions()$data$Name),], Hopweights = shinyValue('Hopv2_', sum(as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected]))), Target_Batch_L = input$slider, OGBE = gravityNotes()[[1]][1], Boilmin =  shinyValue('Time_', sum(as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected])))))
+  hopnotes <-  eventReactive(input$compute, ShinyIBUCalc(Hops = newHopoptions()$data, Hopweights = shinyValue('Hopv2_', sum(as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected]))), Target_Batch_L = input$slider, OGBE = gravityNotes()[[1]][1], Boilmin =  shinyValue('Time_', sum(as.numeric(shinyValue('Hopadd_', nrow(searchhop()))[input$Hopoptions_rows_selected])))))
   
   recipeNotesDT <- eventReactive(input$compute, data.frame(
     Info = c("Strike Volume","Sparge Volume","Total Water", "Strike temperature","Target batch (L)","Target Mash temperature"),
     Value = recipeNotes(),
+    stringsAsFactors = FALSE 
+  ))
+  
+  recipeNotesDT2 <- eventReactive(input$compute, data.frame(
+          Malt = newMaltoptions()$Malt,
+          Description = newMaltoptions()$Decription,
+          #GrainType = newMaltoptions()$Type,
+          Weight = shinyValue('v2_', nrow(newMaltoptions())),
     stringsAsFactors = FALSE 
   ))
   
@@ -581,10 +571,13 @@ server <- function(input, output, session) {
   ))
   
   hopnotesDT <- eventReactive(input$compute, data.frame(
-    Info = c("IBUs"),
-    Value = round(sum(as.numeric(hopnotes()$IBU))),
+    Info = c(paste(round(sum(as.numeric(hopnotes()$IBU))),"total IBUs"),paste("add",hopnotes()$Name)),
+    Grams = c("",hopnotes()$Hopweights),
+    Value = c("",hopnotes()$Boilmin),
     stringsAsFactors = FALSE
   ))
+  
+  
   
    output$batch <- DT::renderDataTable(
     recipeNotesDT(), server = FALSE, escape = FALSE
@@ -599,7 +592,7 @@ server <- function(input, output, session) {
    )
   
    output$batch4 <- renderPlot(
-     crhopgr(newHopoptions()$data[order(newHopoptions()$data$Name),])
+     crhopgr(newHopoptions()$data)
    )
    
    output$batch5 <- renderPlot(
@@ -610,23 +603,49 @@ server <- function(input, output, session) {
      crattgr(gravityNotesDT())
    )
 
+   output$batch7 <- DT::renderDataTable(
+     recipeNotesDT2(), server = FALSE, escape = FALSE
+   )
+   
+   output$logo <- renderPlot(
+     logo
+   )
 
-  #"slider", "Target batch (L):", 0
-  #"slider2", "Mash time (Min):", 0
-  #"slider3", "Boil time (Min):", 0
-  #"slider4", "Target mash temp (Ce
-  #"slider5", "Grain temp (Cel):", 
-  #"slider5", "Brewhouse efficiency
+   
+
   
+   
+   
+   output$downloadReport <- downloadHandler(
+     filename = function() {
+       paste(input$Bname,format(Sys.time(), "%y%m%d%H%m"), sep = '.', switch(
+         input$format, PDF = 'pdf', HTML = 'html', Word = 'docx'
+       ))
+     },
+     
+     content = function(file) {
+       src <- normalizePath('report.Rmd')
+       
+       # temporarily switch to the temp dir, in case you do not have write
+       # permission to the current working directory
+       owd <- setwd(tempdir())
+       on.exit(setwd(owd))
+       file.copy(src, 'report.Rmd')
+       
+       library(rmarkdown)
+       out <- render('report.Rmd', switch(
+         input$format,
+         PDF = pdf_document(), HTML = html_document(), Word = word_document()
+       ))
+       file.rename(out, file)
+     }
+   )
 
   
 }
 
-#add source boilmash
-#add kg etc. converters
-#add button
-#add information tab
 
+#Add 'print' recipe
 #Add recipe storage
 
 

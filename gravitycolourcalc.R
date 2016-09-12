@@ -181,38 +181,4 @@ ShinyFGCalc <- function(Malts, Grainprops,Target_Batch_L, yeast, brewhouse_effic
   return(gravity_notes)
 }
 
-leftovers <- function(Malts,Grams_Grain, Grainprops,Target_Batch_L, yeast, brewhouse_efficiency=NULL){
-  Malt$potcont<-(Malt$G)-1000
-    length<-length(Malt$Malt)
-    #Test to see if the following works:
-    G<-Malt$G
-    #print(Malt)
-    L<-Malt$L 
-    #This corresponds to the contribution that a pound of grain or extract will add if dissolved in a gallon of water. The maximum potential is approximately 1.046 which would be a pound of pure sugar in a gallon of water.
-    #"potential" contribution
 
-  MCU<- round(sum(Weightframe$colourcont))
-  SRM<- round(1.4922 * (MCU **0.6859))
-  print(paste0("Colour:: Expected SRM: ", SRM, ", Expected MCU: ", MCU))
-  Weightframe$totpot<-((Weightframe$Grainwgt*Weightframe$potcont)*brewhouse_efficiency)
-  OG100gal <- round(sum((Weightframe$Grainwgt*Weightframe$potcont))/Target_Batch_gal)
-  OG100 <- round(sum((Weightframe$Grainwgt*Weightframe$potcont))/Target_Batch_gal)+1000
-  OGBEgal <- round((sum(Weightframe$totpot))/Target_Batch_gal)
-  OGBE <- (round((sum(Weightframe$totpot))/Target_Batch_gal)+1000)
-  #print(paste0("OG at 100% efficiency: ", OG100gal, " per gallon"))
-  #print(paste0("OG at 100% efficiency: ", OG100))
-  print(paste0("OG at brewhouse efficiency: ", OGBEgal," per gallon"))
-  print(paste0("OG at brewhouse efficiency: ",OGBE))
-  if(!is.null(yeast_attenuation)){
-    EFG <- round(OGBEgal*(1-(yeast_attenuation/100))+1000)
-    EABV <- ((OGBE - EFG)*131)/1000
-    print(paste0("Expected FG: ", EFG))
-    print(paste0("Expected ABV: ", EABV))
-    gravity_notes<-c(OGBE,OGBEgal,SRM,MCU,EFG,EABV)
-  }
-  if(is.null(yeast_attenuation)){
-    gravity_notes<-c(OGBE,OGBEgal,SRM,MCU,"","")
-  }
-  gravity_notes <- list(gravity_notes,Weightframe, yeastinfo)
-  return(gravity_notes)
-}
