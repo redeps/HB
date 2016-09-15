@@ -641,6 +641,7 @@ server <- function(input, output, session) {
       Weight = shinyValue('v2_', nrow(newMaltoptions$data)),
       stringsAsFactors = FALSE 
     )
+    colnames(recipeNotesDT2$data) <- c("Info","Description","Weight")
   })
   
   observeEvent(input$file1, {
@@ -734,9 +735,9 @@ server <- function(input, output, session) {
       Amount = shinyValue('v2_', nrow(newMaltoptions$data)))
     
     chosenHops <- data.frame(
+      Info = newHopoptions()$data[[3]],
       Amount = shinyValue('Hopv2_', nrow(newHopoptions()$data)),
       Boil_time = shinyValue('Hopadd2_', nrow(newHopoptions()$data)),
-      Info = newHopoptions()$data[[3]],
       Alpha.Acids = newHopoptions()$data[[4]],
       Alpha.Acid.High = newHopoptions()$data[[5]],
       approxalpha = newHopoptions()$data[[6]],
