@@ -2,6 +2,8 @@
 
 # Possible errors:
 #changing name from newMaltoptions() to newMaltoptions$data
+#Still some load problems related to "Value"
+#Find a way to use the addRowM and addRowH functions from the directory files when entering new values
 
 
 
