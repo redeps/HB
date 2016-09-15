@@ -1,0 +1,49 @@
+---
+title: "Recipe report"
+output: html_document
+css: styles.css
+params:
+  BName: NA,
+  BType: NA,
+  ChosenMalts: NA,
+  MDesc: NA,
+  Malts: NA,
+  Hops: NA,
+  HopGraph: NA,
+  Yeast: NA,
+  RecNotes: NA,
+  GravNotes: NA,
+  HopAdds: NA
+---
+
+```{r, echo = FALSE}
+#Name
+params$BName
+#Type
+params$BType
+```
+
+```{r, echo = FALSE}
+#Ingredients
+kable(params$ChosenMalts, format = "markdown")
+kable(params$Hops, format = "markdown")
+```
+
+```{r, echo=FALSE, fig.width=10, fig.height=10, warning = FALSE, fig.align = "center"}
+params$HopGraph
+```
+
+```{r, echo = FALSE}
+kable(params$Yeast, format = "markdown")
+
+```
+
+```{r, echo = FALSE}
+#Recipe procedure and notes
+kable(params$RecNotes, format = "markdown")
+kable(params$GravNotes, format = "markdown")
+kable(params$HopAdds, format = "markdown")
+
+```
+
+

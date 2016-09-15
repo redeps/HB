@@ -1,0 +1,13 @@
+\documentclass{article}
+
+\begin{document}
+
+<<names>>=
+gsub("\\","", input$Malts)
+gsub("\\","", input$Hops)
+@
+
+<<>>=
+
+
+\end{document}
