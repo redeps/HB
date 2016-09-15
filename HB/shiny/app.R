@@ -2,7 +2,7 @@
 
 # Possible errors:
 #changing name from newMaltoptions() to newMaltoptions$data
-#Will now not save data
+
 
 
 ##install.packages("shinydashboard")
@@ -45,6 +45,13 @@ source(paste0(getwd(),"/boilmashcalc.R"))
 source(paste0(getwd(),"/gravitycolourcalc.R"))
 source(paste0(getwd(),"/ibucalc.R"))
 source(paste0(getwd(),"/graphfunc.R"))
+
+MaltDirectory <- addRowM(list("Weyermann Premium Pilsner",1.4,1038,"Perfect base for extra pale lagers, substantial mouthfeel, head, use up to 100%, pilsners, all lagers, low-alchohol beers, belgian beers","",NA))
+
+MaltDirectory <- addRowM(list("Weyermann Carapils",2.25,1035,"","",NA))
+
+HopDirectory <- addRowH(list(Name = "Magnum", Alpha.Acids = 10.2))
+HopDirectory <- addRowH(list(Name = "Hallertau Mittelfruh", Alpha.Acids = 4))
 
 getMaltsShiny <- function(Malts){
   for(malt in 1:length(Malts)){
@@ -236,7 +243,7 @@ ui <- dashboardPage(
                   sliderInput("slider3", "Boil time (Min):", 0,120, 60),
                   sliderInput("slider4", "Target mash temp (Cel):", 0,100, 64),
                   sliderInput("slider5", "Grain temp (Cel):", 0,50, 22),
-                  sliderInput("slider5", "Brewhouse efficiency:", 0,1, .72)
+                  sliderInput("slider6", "Brewhouse efficiency:", 0,1, .72)
                 )
               ),
               tabsetPanel(title = "Options", id = "tabset2",
@@ -609,7 +616,7 @@ server <- function(input, output, session) {
   
   #information
   
-  gravityNotes <- eventReactive(input$compute, ShinyFGCalc(newMaltoptions$data, shinyValue('v2_', nrow(newMaltoptions$data)), input$slider, newYeastoptions(), input$slider5))
+  gravityNotes <- eventReactive(input$compute, ShinyFGCalc(newMaltoptions$data, shinyValue('v2_', nrow(newMaltoptions$data)), input$slider, newYeastoptions(), input$slider6))
   
   recipeNotes <-  eventReactive(input$compute, amountfunc(Target_Batch_L = input$slider, Grams_Grain = sum(shinyValue('v2_', nrow(newMaltoptions$data))), Boil_time_Hr = input$slider3, Target_Mash_Temp = input$slider4, Grain_Temp= input$slider5))
   
@@ -723,7 +730,6 @@ server <- function(input, output, session) {
   )
   
   observeEvent(input$saveOut, {
-    #I believe the save out problem can be found in here
     chosenMalts <- data.frame(
       Info = newMaltoptions$data[[1]],
       L = newMaltoptions$data[[2]],

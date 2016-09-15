@@ -82,6 +82,16 @@ names(LaQuebecoiseMalt)<-list
 MaltDirectory<-rbind(MaltDirectory,LaQuebecoiseMalt)
 
 
+addRowM <- function(list){
+  if(length(list) == length(MaltDirectory[nrow(MaltDirectory),])){
+    MaltDirectory[nrow(MaltDirectory)+1,] <- list
+    row.names(MaltDirectory) <- 1:nrow(MaltDirectory)
+  } 
+  return(MaltDirectory)
+}
+
+MaltDirectory <- addRowM(list("Weyermann Premium Pilsner",1.4,1037,"Perfect base for extra pale lagers, substantial mouthfeel, head, use up to 100%, pilsners, all lagers, low-alchohol beers, belgian beers","",NA))
+
 searchmalts <- function(name){
   i <-grep(name, MaltDirectory$Malt,ignore.case=TRUE)
   return(MaltDirectory[i,])

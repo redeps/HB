@@ -149,6 +149,7 @@ FGCalc <- function(Malts,Grams_Grain, Grainprops,Target_Batch_L, yeast, brewhous
 
 
 ShinyFGCalc <- function(Malts, Grainprops,Target_Batch_L, yeast, brewhouse_efficiency=NULL){
+  print(list(Malts,Grainprops, Target_Batch_L,yeast,brewhouse_efficiency))
   Target_Batch_gal <- ltogal(Target_Batch_L)
   #Test to see if the two following work:
   yeast_attenuation <- ifelse(nrow(yeast) == 1, as.numeric(yeast$avgatt), NULL)

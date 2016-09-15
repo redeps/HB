@@ -78,6 +78,17 @@ HopDirectory <- mydata
 HopDirectory$sugguse <- ifelse(HopDirectory$approxalpha <=7, "base hop", NA)
 HopDirectory$group <- 2
 
+
+addRowH <- function(list){
+  HopDirectory <- bind_rows(HopDirectory, as.data.frame(list))
+  return(HopDirectory)
+}
+
+
+
+
+
+
 p<-ggplot(HopDirectory, aes(x=reorder(Name,-Alpha.Acid.High) ))
 p+geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),(0-Alpha.Acid.High)), stat="identity", fill='#DEB887', alpha=.5)+
   geom_bar(aes(x=reorder(Name,-Alpha.Acid.High),(0-Alpha.Acids)), stat="identity", fill='#DEB887', alpha=.35)+
